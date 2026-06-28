@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 2 - Add Playlist Link</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>Add Playlist Link (myLinks) - Duplicate</h3>
+        <input type="text" id="platform" placeholder="Platform (e.g., YouTube Music)">
+        <input type="text" id="url" placeholder="URL">
+        <button onclick="handleFormSubmit()">Add Link</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function addPlaylistLink(linkObj) {
+            let myLinks = JSON.parse(localStorage.getItem('myLinks')) || [];
+            myLinks.push(linkObj);
+            localStorage.setItem('myLinks', JSON.stringify(myLinks));
+            document.getElementById('result').innerText = "Updated myLinks: " + JSON.stringify(myLinks);
+        }
+
+        function handleFormSubmit() {
+            const platform = document.getElementById('platform').value;
+            const url = document.getElementById('url').value;
+            if(platform && url) {
+                addPlaylistLink({ platform: platform, url: url });
+            }
+        }
+    </script>
+</body>
+</html>

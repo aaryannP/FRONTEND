@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 13 - Instagram Validation</title>
+    
+</head>
+<body>
+    <div class="form-group">
+        <label for="instaUrl">Instagram Profile URL:</label>
+        <input type="text" id="instaUrl" placeholder="https://www.instagram.com/username">
+        <div id="errorLocation" class="error-msg">Invalid Instagram URL! Must start with https://www.instagram.com/</div>
+    </div>
+
+    <script>
+        document.getElementById('instaUrl').addEventListener('input', function() {
+            const url = this.value;
+            const errorDiv = document.getElementById('errorLocation');
+            if(!url.startsWith('https://www.instagram.com/')) {
+                errorDiv.style.display = 'block';
+            } else {
+                errorDiv.style.display = 'none';
+            }
+        });
+    </script>
+    </body>
+</html>

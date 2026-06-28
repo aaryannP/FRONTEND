@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Data Flow Diagram</title>
+    
+</head>
+<body>
+
+<div class="container">
+    <h2>Playlist Operations Data Flow Diagram</h2>
+    
+    <div class="flowchart">
+        <div class="node">
+            HTML Form
+            <span class="label-text">User Inputs Details</span>
+        </div>
+        
+        <div class="arrow">→<br><span style="font-size:12px;color:#666;">Form Submit</span></div>
+        
+        <div class="node" style="border-color: #4a4a4a;">
+            JavaScript Array
+            <span class="label-text">push() / splice() / update</span>
+        </div>
+        
+        <div class="arrow">→<br><span style="font-size:12px;color:#666;">Re-render</span></div>
+        
+        <div class="node" style="border-color: #0070f3;">
+            Display Area
+            <span class="label-text">Updated UI List</span>
+        </div>
+    </div>
+    
+    <h3>Process Explanations:</h3>
+    <ul>
+        <li><strong>Adding:</strong> Form Submit → packaged into object → <code>array.push()</code> → trigger <code>render()</code> function to display.</li>
+        <li><strong>Editing:</strong> Click Edit → Populate fields into Form → Modify items → Save back to specific array index → trigger <code>render()</code>.</li>
+        <li><strong>Deleting:</strong> Click Delete → <code>array.splice(index, 1)</code> → trigger <code>render()</code> to immediately update view.</li>
+    </ul>
+</div>
+
+</body>
+</html>

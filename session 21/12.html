@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12 - Advanced Theme Toggle</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>Playlist Links Page</h3>
+        <p>This page persists your theme selection on reload.</p>
+        <button onclick="toggleTheme()">Toggle Theme</button>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const currentMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('playlistTheme', currentMode);
+        }
+
+        // Check on Page Load
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('playlistTheme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        };
+    </script>
+</body>
+</html>

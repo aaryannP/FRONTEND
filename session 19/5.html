@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Create Playlist</title>
+    
+</head>
+<body>
+
+<div class="container">
+    <h2>Create Playlist</h2>
+    <form id="playlistForm">
+        <div class="form-group">
+            <label for="name">Playlist Name</label>
+            <input type="text" id="name" required placeholder="My Awesome Playlist">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Add an optional description"></textarea>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+    <div class="status" id="statusMsg"></div>
+</div>
+
+<script>
+    const playlists = [];
+
+    document.getElementById('playlistForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const description = document.getElementById('description').value;
+        
+        const newPlaylist = {
+            name: name,
+            description: description
+        };
+        
+        playlists.push(newPlaylist);
+        console.log("Playlists Array:", playlists);
+        
+        document.getElementById('statusMsg').innerText = `Playlist "${name}" added to array successfully!`;
+        this.reset();
+    });
+</script>
+
+</body>
+</html>

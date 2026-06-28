@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 7</title>
+</head>
+<body>
+    <h3>Zomato Review</h3>
+    <textarea id="reviewText" placeholder="Write a review..."></textarea><br>
+    <button id="submitReview">Submit Review</button>
+    <div id="feedbackMsg"></div>
+
+    <script>
+        document.getElementById('submitReview').addEventListener('click', () => {
+            const review = document.getElementById('reviewText').value.trim();
+            const msg = document.getElementById('feedbackMsg');
+            
+            if (review === "") {
+                msg.innerText = "Error: Cannot submit an empty review!";
+            } else {
+                msg.innerText = "Review submitted!";
+            }
+        });
+    </script>
+</body>
+</html>

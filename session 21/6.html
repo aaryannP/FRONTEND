@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6 - Edit Playlist Link</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>Edit Playlist Link</h3>
+        <input type="number" id="indexInput" placeholder="Index to Edit (e.g., 0)">
+        <input type="text" id="newName" placeholder="New Name">
+        <input type="text" id="newUrl" placeholder="New URL">
+        <button onclick="handleEdit()">Edit Playlist</button>
+        <div id="result">Current Data in LocalStorage...</div>
+    </div>
+
+    <script>
+        if(!localStorage.getItem('myPlaylists')) {
+            localStorage.setItem('myPlaylists', JSON.stringify([{name: "Old Playlist", url: "https://old.com"}]));
+        }
+
+        function showCurrentData() {
+            document.getElementById('result').innerText = localStorage.getItem('myPlaylists');
+        }
+        showCurrentData();
+
+        function editPlaylistLink(index, newLinkObj) {
+            let myPlaylists = JSON.parse(localStorage.getItem('myPlaylists')) || [];
+            if(index >= 0 && index < myPlaylists.length) {
+                myPlaylists[index] = newLinkObj;
+                localStorage.setItem('myPlaylists', JSON.stringify(myPlaylists));
+                showCurrentData();
+            } else {
+                alert("Index out of bounds!");
+            }
+        }
+
+        function handleEdit() {
+            const index = parseInt(document.getElementById('indexInput').value);
+            const name = document.getElementById('newName').value;
+            const url = document.getElementById('newUrl').value;
+            if(!isNaN(index) && name && url) {
+                editPlaylistLink(index, { name: name, url: url });
+            }
+        }
+    </script>
+</body>
+</html>

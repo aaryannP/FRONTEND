@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 10 - Manage Link Function</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>Manage Link (Add/Edit Refactored)</h3>
+        <select id="mode">
+            <option value="add">Add Mode</option>
+            <option value="edit">Edit Mode</option>
+        </select>
+        <input type="number" id="index" placeholder="Index (Only for Edit Mode)">
+        <input type="text" id="name" placeholder="Playlist Name">
+        <input type="text" id="url" placeholder="URL">
+        <button onclick="handleSubmit()">Execute</button>
+        <div id="result">Data...</div>
+    </div>
+
+    <script>
+        function display() { document.getElementById('result').innerText = localStorage.getItem('myPlaylists') || '[]'; }
+        display();
+
+        function manageLink(linkObj, mode, index = null) {
+            let myPlaylists = JSON.parse(localStorage.getItem('myPlaylists')) || [];
+            
+            if (mode === 'add') {
+                myPlaylists.push(linkObj);
+            } else if (mode === 'edit' && index !== null && index >= 0 && index < myPlaylists.length) {
+                myPlaylists[index] = linkObj;
+            }
+
+            localStorage.setItem('myPlaylists', JSON.stringify(myPlaylists));
+            display();
+        }
+
+        function handleSubmit() {
+            const mode = document.getElementById('mode').value;
+            const name = document.getElementById('name').value;
+            const url = document.getElementById('url').value;
+            const idx = parseInt(document.getElementById('index').value);
+
+            if(name && url) {
+                manageLink({name, url}, mode, mode === 'edit' ? idx : null);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato Add Restaurant</title>
+    
+</head>
+<body>
+
+<div class="container">
+    <h2>Add New Restaurant</h2>
+    <form id="restaurantForm">
+        <div class="form-group">
+            <label for="name">Restaurant Name</label>
+            <input type="text" id="name" required placeholder="e.g. Spice Kitchen">
+        </div>
+        <div class="form-group">
+            <label for="cuisine">Cuisine Type</label>
+            <input type="text" id="cuisine" required placeholder="e.g. North Indian, Italian">
+        </div>
+        <div class="form-group">
+            <label for="rating">Rating (1-5)</label>
+            <input type="number" id="rating" min="1" max="5" step="0.1" required placeholder="e.g. 4.5">
+        </div>
+        <button type="submit">Add Restaurant</button>
+    </form>
+    <div class="status" id="statusMsg"></div>
+</div>
+
+<script>
+    const restaurants = [];
+
+    document.getElementById('restaurantForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const cuisine = document.getElementById('cuisine').value;
+        const rating = document.getElementById('rating').value;
+        
+        const newRestaurant = {
+            name: name,
+            cuisine: cuisine,
+            rating: parseFloat(rating)
+        };
+        
+        restaurants.push(newRestaurant);
+        console.log("Restaurants Array:", restaurants);
+        
+        document.getElementById('statusMsg').innerText = `Restaurant "${name}" added successfully!`;
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
