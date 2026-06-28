@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 4</title>
+</head>
+<body>
+    <script>
+        function placeOrder(item, callback) {
+            setTimeout(() => {
+                callback(`Your ${item} is being prepared`);
+            }, 1000);
+        }
+
+        placeOrder('Pizza', (message) => {
+            console.log(message);
+        });
+    </script>
+</body>
+</html>

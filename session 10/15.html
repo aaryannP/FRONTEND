@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 15</title>
+</head>
+<body>
+    <script>
+        const getFollowersSummary = (...counts) => {
+            let total = 0;
+            for(let i = 0; i < counts.length; i++) {
+                total += counts[i];
+            }
+            return `Total followers: ${total}`;
+        };
+
+        console.log(getFollowersSummary(500, 400, 300));
+    </script>
+</body>
+</html>

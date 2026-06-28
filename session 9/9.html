@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9</title>
+</head>
+<body>
+    <script>
+        function getRecentSearches() {
+            let saved = localStorage.getItem('recentSearches');
+            if (saved === null) {
+                return [];
+            }
+            return JSON.parse(saved);
+        }
+
+        console.log(getRecentSearches());
+    </script>
+</body>
+</html>

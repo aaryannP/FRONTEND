@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 10</title>
+</head>
+<body>
+    <script>
+        const products = ['iPhone 13', 'Samsung S22', 'iPhone 14', 'MacBook Pro'];
+
+        function searchProductsCallback(searchTerm, callback) {
+            setTimeout(() => {
+                const filtered = products.filter(p => p.includes(searchTerm));
+                callback(filtered);
+            }, 1000);
+        }
+
+        function searchProductsPromise(searchTerm) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const filtered = products.filter(p => p.includes(searchTerm));
+                    resolve(filtered);
+                }, 1000);
+            });
+        }
+
+        // Testing
+        searchProductsCallback('iPhone', (res) => console.log('Callback:', res));
+        searchProductsPromise('iPhone').then((res) => console.log('Promise:', res));
+    </script>
+</body>
+</html>

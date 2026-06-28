@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 3</title>
+</head>
+<body>
+    <script>
+        function validateUsername(username) {
+            const regex = /^[a-zA-Z0-9]+$/;
+            if (!regex.test(username)) {
+                throw new Error('Invalid Username');
+            }
+        }
+
+        try {
+            validateUsername("user_123!");
+        } catch (error) {
+            console.log(error.message);
+        }
+    </script>
+</body>
+</html>

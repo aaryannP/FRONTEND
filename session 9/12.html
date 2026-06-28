@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+</head>
+<body>
+    <ul id="wishlistDisplay"></ul>
+
+    <script>
+        const sampleWishlist = [
+            { name: "T-Shirt", price: 499 },
+            { name: "Shoes", price: 1999 },
+            { name: "Watch", price: 1499 }
+        ];
+        localStorage.setItem('wishlist', JSON.stringify(sampleWishlist));
+
+        function loadWishlist() {
+            const listDisplay = document.getElementById('wishlistDisplay');
+            let savedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            
+            savedWishlist.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - ${item.price}`;
+                listDisplay.appendChild(li);
+            });
+        }
+
+        window.onload = loadWishlist;
+    </script>
+</body>
+</html>

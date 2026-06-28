@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 14</title>
+</head>
+<body>
+    <script>
+        let movies = ['Jawan', 'Pathaan', 'Dunki'];
+        localStorage.setItem('movies', JSON.stringify(movies));
+        let saved = localStorage.getItem('movies');
+        let arr = JSON.parse(saved);
+        console.log(arr);
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6</title>
+</head>
+<body>
+    <div id="cart-output"></div>
+
+    <script type="module" id="utils">
+        export function formatPrice(price) { return '₹' + price.toFixed(2); }
+        export function getDiscountedPrice(price, discount) { return price - (price * (discount / 100)); }
+    </script>
+
+    <script type="module">
+        const code = document.getElementById('utils').text;
+        const blob = new Blob([code], { type: 'application/javascript' });
+        const url = URL.createObjectURL(blob);
+
+        import(url).then(utils => {
+            const items = [
+                { price: 1000, discount: 10 },
+                { price: 500, discount: 20 },
+                { price: 2500, discount: 15 }
+            ];
+
+            const outputDiv = document.getElementById('cart-output');
+            items.forEach(item => {
+                const discPrice = utils.getDiscountedPrice(item.price, item.discount);
+                console.log(utils.formatPrice(item.price), utils.formatPrice(discPrice));
+                outputDiv.innerHTML += `<p>${utils.formatPrice(item.price)} - ${utils.formatPrice(discPrice)}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>

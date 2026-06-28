@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 4</title>
+</head>
+<body>
+    <script>
+        function fetchTopMovies() {
+            fetch('https://jsonplaceholder.typicode.com/albums')
+                .then(response => response.json())
+                .then(albums => {
+                    const topThree = albums.slice(0, 3);
+                    topThree.forEach((album, index) => {
+                        console.log(`Trending Movie #${index + 1}: ${album.title}`);
+                    });
+                });
+        }
+        fetchTopMovies();
+    </script>
+</body>
+</html>

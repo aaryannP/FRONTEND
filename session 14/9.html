@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9</title>
+</head>
+<body>
+    <div id="out"></div>
+
+    <script type="module" id="utils">
+        export function formatPrice(price) { return '₹' + price.toFixed(2); }
+        export default function getDiscountedPrice(price, discount) { return price - (price * (discount / 100)); }
+    </script>
+
+    <script type="module">
+        const code = document.getElementById('utils').text;
+        const blob = new Blob([code], { type: 'application/javascript' });
+        const url = URL.createObjectURL(blob);
+
+        import(url).then(module => {
+            const getDiscountedPrice = module.default;
+            const { formatPrice } = module;
+
+            const original = 500;
+            const finalPrice = getDiscountedPrice(original, 10);
+            
+            console.log(formatPrice(original), formatPrice(finalPrice));
+            document.getElementById('out').innerText = `${formatPrice(original)} ${formatPrice(finalPrice)}`;
+        });
+    </script>
+</body>
+</html>

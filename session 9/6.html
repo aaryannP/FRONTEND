@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6</title>
+</head>
+<body>
+    <script>
+        let searchHistory = [];
+
+        function saveRecentSearch(query) {
+            searchHistory.push(query);
+            localStorage.setItem('recentSearches', JSON.stringify(searchHistory));
+        }
+    </script>
+</body>
+</html>
