@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6</title>
+    
+</head>
+<body>
+
+    <form onsubmit="return false;">
+        <label>Cuisine:</label>
+        <select onchange="displayCuisine(this.value)">
+            <option value="">Select Cuisine</option>
+            <option value="North Indian">North Indian</option>
+            <option value="South Indian">South Indian</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Italian">Italian</option>
+        </select>
+        
+        <label>Quantity:</label>
+        <input type="number" min="1" value="1">
+        
+        <div id="message"></div>
+    </form>
+
+    <script>
+        function displayCuisine(value) {
+            const msgDiv = document.getElementById('message');
+            if(value) {
+                msgDiv.innerText = "Selected Cuisine: " + value;
+            } else {
+                msgDiv.innerText = "";
+            }
+        }
+    </script>
+</body>
+</html>

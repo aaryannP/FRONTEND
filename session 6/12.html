@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+    
+</head>
+<body>
+
+    <div class="spotify-display">
+        Now Playing: <span id="song-title">Click change button</span>
+        <button id="changeSongBtn">Change Song</button>
+    </div>
+
+    <script>
+        var songs = ["Starboy", "Blinding Lights", "Shape of You", "Stay", "Dynamite"];
+        var currentIndex = 0;
+
+        var songSpan = document.getElementById('song-title');
+        var changeBtn = document.getElementById('changeSongBtn');
+
+        changeBtn.addEventListener('click', function() {
+            songSpan.innerHTML = songs[currentIndex];
+            currentIndex = (currentIndex + 1) % songs.length; 
+        });
+    </script>
+</body>
+</html>

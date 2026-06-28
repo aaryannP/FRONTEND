@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 9</title>
+</head>
+<body>
+    <script>
+        function createLikeButton(label, color) {
+            const button = document.createElement('button');
+            button.innerText = label;
+            button.style.backgroundColor = color;
+            return button;
+        }
+
+        const myLikeBtn = createLikeButton('Like', 'blue');
+        document.body.appendChild(myLikeBtn);
+    </script>
+</body>
+</html>

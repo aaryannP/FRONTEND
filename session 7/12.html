@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+    
+</head>
+<body>
+
+    <div id="clickArea" style="border: 1px solid black; height: 200px;">Click anywhere inside this box</div>
+
+    <script>
+        const area = document.getElementById('clickArea');
+        
+        area.addEventListener('click', function(event) {
+            area.innerHTML = `X: ${event.clientX} , Y: ${event.clientY}`;
+        });
+    </script>
+</body>
+</html>

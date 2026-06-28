@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 14</title>
+    
+</head>
+<body>
+
+    <button id="flipkartBtn">Add to Cart</button>
+
+    <script>
+        const btn = document.getElementById('flipkartBtn');
+        
+        function logEventDetails(event) {
+            console.log(`Event Type: ${event.type}, X: ${event.clientX}, Y: ${event.clientY}`);
+        }
+        
+        btn.addEventListener('click', logEventDetails);
+        btn.addEventListener('mouseover', logEventDetails);
+    </script>
+</body>
+</html>

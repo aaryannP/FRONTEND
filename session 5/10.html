@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 10</title>
+</head>
+<body>
+    <script>
+        function showMenuItem(name, price) {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <div>${name}</div>
+                <div>${price}</div>
+            `;
+            return div;
+        }
+
+        document.body.appendChild(showMenuItem('Butter Chicken', 350));
+        document.body.appendChild(showMenuItem('Paneer Tikka', 240));
+        document.body.appendChild(showMenuItem('Garlic Naan', 50));
+    </script>
+</body>
+</html>

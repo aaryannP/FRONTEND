@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6</title>
+    
+</head>
+<body>
+
+    <form id="friendForm" onsubmit="return false;">
+        <input type="text" id="friendInput" placeholder="Enter friend's name">
+        <button id="addFriendBtn">Add Friend</button>
+    </form>
+
+    <ul id="friend-list"></ul>
+
+    <script>
+        document.querySelector('#addFriendBtn').addEventListener('click', function() {
+            var input = document.querySelector('#friendInput');
+            var friendName = input.value;
+            
+            if(friendName.trim() !== "") {
+                var li = document.createElement('li');
+                li.textContent = friendName;
+                document.querySelector('#friend-list').appendChild(li);
+                input.value = "";
+            }
+        });
+    </script>
+</body>
+</html>

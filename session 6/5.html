@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 5</title>
+    
+</head>
+<body>
+
+    <form id="songForm" onsubmit="return false;">
+        <input type="text" id="songInput" placeholder="Enter song name">
+        <button id="addSongBtn">Add Song</button>
+    </form>
+
+    <ul id="playlist"></ul>
+
+    <script>
+        document.querySelector('#addSongBtn').addEventListener('click', function() {
+            var input = document.querySelector('#songInput');
+            var songName = input.value;
+            
+            if(songName.trim() !== "") {
+                var li = document.createElement('li');
+                li.textContent = songName;
+                document.querySelector('#playlist').appendChild(li);
+                input.value = ""; 
+            }
+        });
+    </script>
+</body>
+</html>
