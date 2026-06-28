@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const restaurants = [
+            { name: "Pasta Place", cuisine: "Italian" },
+            { name: "Dragon Wok", cuisine: "Chinese" },
+            { name: "Spice Kraft", cuisine: "Indian" }
+        ];
+
+        const chineseRest = restaurants.find(restaurant => restaurant.cuisine === 'Chinese');
+        
+        document.getElementById('result').innerHTML = JSON.stringify(chineseRest);
+    </script>
+</body>
+</html>

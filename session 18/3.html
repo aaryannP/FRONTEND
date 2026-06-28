@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 3 - Songs Table</title>
+    
+</head>
+<body>
+    <h2>Songs Collection Console Table</h2>
+    <p>Open your browser console (F12) and click the button below to see the formatted songs table layout.</p>
+    <button onclick="displaySongsTable()">Display Songs Table</button>
+
+    <script>
+        function displaySongsTable() {
+            const songs = [
+                { title: "Shape of You", artist: "Ed Sheeran", duration: "3:53" },
+                { title: "Blinding Lights", artist: "The Weeknd", duration: "3:20" },
+                { title: "Stay", artist: "Justin Bieber", duration: "2:21" },
+                { title: "Perfect", artist: "Ed Sheeran", duration: "4:23" },
+                { title: "Believer", artist: "Imagine Dragons", duration: "3:24" }
+            ];
+            console.table(songs);
+        }
+    </script>
+</body>
+</html>

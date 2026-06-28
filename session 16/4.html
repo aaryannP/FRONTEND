@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 4</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const posts = [
+            { id: 1, likes: 120 },
+            { id: 2, likes: 450 },
+            { id: 3, likes: 89 }
+        ];
+
+        const likeCounts = posts.map(post => post.likes);
+        
+        document.getElementById('result').innerHTML = JSON.stringify(likeCounts);
+    </script>
+</body>
+</html>

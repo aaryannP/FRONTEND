@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 11 - Stack Trace Analysis (Duplicate)</title>
+    
+</head>
+<body>
+    <h2>Stack Trace Generation</h2>
+    <p>Click the button below to generate an intentional stack trace error in your console log layout.</p>
+    <button onclick="triggerStackError()">Place Order Stack Trace</button>
+
+    <script>
+        function placeOrder() { 
+            confirmOrder(); 
+        } 
+        function confirmOrder() { 
+            processPayment(); 
+        } 
+        function processPayment() { 
+            throw new Error('Payment failed'); 
+        }
+
+        function triggerStackError() {
+            placeOrder();
+        }
+    </script>
+</body>
+</html>

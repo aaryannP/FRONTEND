@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6 - Add to Cart Logs</title>
+    
+</head>
+<body>
+    <h2>Shopping Cart Log Scenarios</h2>
+    <p>Open your browser console (F12) and click the button to see all three cart conditions executed.</p>
+    <button onclick="runCartTests()">Test Add to Cart Scenarios</button>
+
+    <script>
+        function addToCart(productName, quantity) {
+            if (quantity > 0) {
+                console.log(`Success: Added ${quantity} item(s) of "${productName}" to your cart.`);
+            } else if (quantity === 0) {
+                console.warn(`Warning: Attempted to add "${productName}" with a quantity of 0.`);
+            } else {
+                console.error(`Error: Invalid quantity (${quantity}) provided for item "${productName}".`);
+            }
+        }
+
+        function runCartTests() {
+            addToCart("Wireless Mouse", 2);
+            addToCart("Gaming Keyboard", 0);
+            addToCart("Monitor Stand", -3);
+        }
+    </script>
+</body>
+</html>

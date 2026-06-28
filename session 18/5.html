@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 5 - Zomato Admin Dashboard (Duplicate)</title>
+    
+</head>
+<body>
+    <h2>Zomato Admin Dashboard - Food Orders</h2>
+    <p>Open your browser console (F12) and click the button to see the order log table data.</p>
+    <button onclick="displayZomatoOrders()">Display Admin Orders</button>
+
+    <script>
+        function displayZomatoOrders() {
+            const orders = [
+                { orderId: "ZOM9831", itemName: "Paneer Butter Masala", price: 280 },
+                { orderId: "ZOM9832", itemName: "Chicken Biryani", price: 350 },
+                { orderId: "ZOM9833", itemName: "Cheese Garlic Bread", price: 150 },
+                { orderId: "ZOM9834", itemName: "Masala Dosa", price: 120 },
+                { orderId: "ZOM9835", itemName: "Chocolate Brownie", price: 180 }
+            ];
+            console.table(orders);
+        }
+    </script>
+</body>
+</html>

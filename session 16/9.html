@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const posts = [
+            { id: 1, likes: 250 },
+            { id: 2, likes: 150 },
+            { id: 3, likes: 400 }
+        ];
+
+        const totalLikes = posts.reduce((acc, post) => acc + post.likes, 0);
+        
+        document.getElementById('result').innerText = totalLikes;
+    </script>
+</body>
+</html>

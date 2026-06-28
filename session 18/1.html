@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 1 - Instagram Mock Notifications</title>
+    
+</head>
+<body>
+    <h2>Instagram Mock Notifications</h2>
+    <p>Open your browser developer console (F12) and click the button to trigger notifications.</p>
+    <button onclick="triggerInstagramLogs()">Trigger Notifications</button>
+
+    <script>
+        function triggerInstagramLogs() {
+            console.log("Instagram: Post uploaded successfully! 🎉");
+            console.warn("Instagram Warning: Your post caption is missing.");
+            console.error("Instagram Error: Image failed to upload. Connection lost.");
+        }
+    </script>
+</body>
+</html>

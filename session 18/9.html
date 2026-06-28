@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en text">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9 - Loop Breakpoint Stepping</title>
+    
+</head>
+<body>
+    <h2>Loop Inspection Breakpoint</h2>
+    <p>Open the <strong>Sources</strong> tab in DevTools, place a breakpoint inside the loop on line 21, click the button, and use F10 to step over or F8 to continue.</p>
+    <button onclick="loopThroughFriends()">Execute Friends Loop</button>
+
+    <script>
+        function loopThroughFriends() {
+            const friends = ["Amit", "Rohan", "Siddharth", "Pooja", "Divya"];
+            for (let i = 0; i < friends.length; i++) {
+                console.log("Processing friend iteration:", friends[i]); // Set breakpoint here
+            }
+        }
+    </script>
+</body>
+</html>

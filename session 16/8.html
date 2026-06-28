@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 8</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const orders = [
+            { id: 101, clicks: 5 },
+            { id: 102, clicks: 12 },
+            { id: 103, clicks: 3 }
+        ];
+
+        const totalClicks = orders.reduce((accumulator, order) => accumulator + order.clicks, 0);
+        
+        document.getElementById('result').innerText = totalClicks;
+    </script>
+</body>
+</html>

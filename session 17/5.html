@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 5</title>
+</head>
+<body>
+    <button id="addProduct">Add Product</button>
+
+    <div id="wishlistContainer">
+        <div>
+            <span>Product 1</span>
+            <button class="remove-btn">Remove</button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('wishlistContainer');
+        const addBtn = document.getElementById('addProduct');
+        let count = 1;
+
+        addBtn.addEventListener('click', function() {
+            count++;
+            const newCard = document.createElement('div');
+            newCard.innerHTML = `<span>Product ${count}</span> <button class="remove-btn">Remove</button>`;
+            container.appendChild(newCard);
+        });
+
+        container.addEventListener('click', function(event) {
+            if (event.target.classList.contains('remove-btn')) {
+                event.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>

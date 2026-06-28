@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12 - Buggy JSON Parse</title>
+    
+</head>
+<body>
+    <h2>Buggy Code - JSON Parse Validation</h2>
+    <p>Click the button to run buggy code and analyze the exact function name and line number using the console error stack trace.</p>
+    <button onclick="runBuggyJson()">Run JSON Parse Code</button>
+
+    <script>
+        function getUser() { 
+            return fetchUser(); 
+        } 
+        function fetchUser() { 
+            return JSON.parse(undefined); 
+        } 
+
+        function runBuggyJson() {
+            getUser();
+        }
+    </script>
+</body>
+</html>

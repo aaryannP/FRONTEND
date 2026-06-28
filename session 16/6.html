@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const products = [
+            { name: "T-Shirt", price: 599 },
+            { name: "Shoes", price: 2499 },
+            { name: "Watch", price: 1999 }
+        ];
+
+        const formattedProducts = products.map(product => `Product: ${product.name}, Price: ₹${product.price}`);
+        
+        document.getElementById('result').innerHTML = formattedProducts.join('<br>');
+    </script>
+</body>
+</html>

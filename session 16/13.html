@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 13</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const cartItems = [
+            { name: "Jeans", price: 1200 },
+            { name: "Shirt", price: 800 },
+            { name: "Socks", price: 200 }
+        ];
+
+        const totalSum = cartItems.map(item => item.price).reduce((acc, curr) => acc + curr, 0);
+
+        document.getElementById('result').innerText = totalSum;
+    </script>
+</body>
+</html>

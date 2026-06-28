@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 10</title>
+</head>
+<body>
+    <script>
+        class Movie {
+            constructor(title, genre) {
+                this.title = title;
+                this.genre = genre;
+            }
+
+            display() {
+                console.log(this.title + ' - ' + this.genre);
+            }
+        }
+
+        const myMovie = new Movie('Inception', 'Sci-Fi');
+        myMovie.display();
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 1</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const products = [
+            { name: "Mobile", price: 15000, isInStock: true },
+            { name: "Laptop", price: 50000, isInStock: false },
+            { name: "Headphones", price: 2000, isInStock: true }
+        ];
+
+        const inStockProducts = products.filter(product => product.isInStock);
+        
+        document.getElementById('result').innerHTML = JSON.stringify(inStockProducts);
+    </script>
+</body>
+</html>

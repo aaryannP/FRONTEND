@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9</title>
+</head>
+<body>
+    <button id="addRandom">Add Random Product</button>
+
+    <div id="shoppingCart">
+        <div>
+            <span>Initial Product</span>
+            <span class="delete-icon">X</span>
+        </div>
+    </div>
+
+    <script>
+        const cart = document.getElementById('shoppingCart');
+        const addBtn = document.getElementById('addRandom');
+
+        addBtn.addEventListener('click', function() {
+            const newItem = document.createElement('div');
+            newItem.innerHTML = `<span>Random Product</span> <span class="delete-icon">X</span>`;
+            cart.appendChild(newItem);
+        });
+
+        cart.addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete-icon')) {
+                event.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>
