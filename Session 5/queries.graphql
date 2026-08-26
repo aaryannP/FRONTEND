@@ -1,0 +1,37 @@
+# Question 2 & Question 3: Fetch playlist by ID with songs (title and artist)
+query GetPlaylistDetails {
+  playlist(id: "p1") {
+    id
+    name
+    songs {
+      id
+      title
+      artist
+    }
+  }
+}
+
+# Question 4: Fetch all songs with title and duration
+query GetAllSongsWithDuration {
+  songs {
+    title
+    duration
+  }
+}
+
+# Question 5: Introspection query to discover schema types and fields
+query IntrospectSchema {
+  __schema {
+    types {
+      name
+      kind
+      fields {
+        name
+        type {
+          name
+          kind
+        }
+      }
+    }
+  }
+}

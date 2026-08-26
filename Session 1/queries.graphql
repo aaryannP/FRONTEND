@@ -1,0 +1,33 @@
+# Question 1: Fetch name and image of 3 Pokemon
+query GetThreePokemon {
+  pokemons(first: 3) {
+    name
+    image
+  }
+}
+
+# Question 2: Fetch name, types, and maxHP for Pikachu
+query GetPikachuDetails {
+  pokemon(name: "pikachu") {
+    name
+    types
+    maxHP
+  }
+}
+
+# Question 4: Fetch title and poster of movie 'Inception'
+query GetMoviePoster {
+  movie(title: "Inception") {
+    title
+    poster
+  }
+}
+
+# Question 5: Mutation to add playlist in Spotify-like app
+mutation CreatePlaylist {
+  addPlaylist(input: { title: "Coding Vibes", description: "Lo-fi beats for coding", isPrivate: false }) {
+    id
+    title
+    createdAt
+  }
+}
