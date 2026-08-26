@@ -1,0 +1,10 @@
+InstaCloneStarter
+│
+├── src
+│   ├── App.js
+│   ├── TrendingSong.js
+│   ├── index.js
+│   └── ...
+│
+├── package.json
+└── ...

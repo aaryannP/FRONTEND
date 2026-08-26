@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body
+    {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(
+            -45deg,
+            #0b3d20,
+            #198754,
+            #20c997,
+            #7fffd4
+        );
+        background-size: 400% 400%;
+        animation: gradientMove 12s ease infinite;
+    }
+
+    @keyframes gradientMove
+    {
+        0%
+        {
+            background-position: 0% 50%;
+        }
+        50%
+        {
+            background-position: 100% 50%;
+        }
+        100%
+        {
+            background-position: 0% 50%;
+        }
+    }
+
+    .maincontainer
+    {
+        display: flex;
+        height: 80vh;
+        width: 80vw;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.25);
+        box-shadow:
+        0 8px 32px rgba(0,0,0,0.25);
+        transition: all 0.4s ease;
+    }
+
+    .maincontainer:hover
+    {
+        transform: scale(1.01);
+    }
+
+    .head
+    {
+        margin: 20px auto;
+    }
+
+    input
+    {
+        padding: 15px;
+        border-radius: 12px;
+        width: 500px;
+        border: none;
+        background: rgba(255,255,255,0.9);
+        transition: all 0.3s ease;
+        box-shadow:
+        0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    input:hover
+    {
+        transform: scale(1.03);
+    }
+
+    input:focus
+    {
+        outline: none;
+        transform: scale(1.03);
+        box-shadow:
+        0 0 20px rgba(32,201,151,0.7);
+    }
+
+    button
+    {
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        cursor: pointer;
+        background: linear-gradient(
+            135deg,
+            #198754,
+            #20c997
+        );
+        transition: all 0.3s ease;
+        box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    button:hover
+    {
+        transform: scale(1.08);
+        background: linear-gradient(
+            135deg,
+            #20c997,
+            #157347
+        );
+        box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    button:active
+    {
+        transform: scale(0.95);
+    }
+
+    .submit
+    {
+        padding: 15px 20px;
+        border-radius: 12px;
+    }
+
+    .todo
+    {
+        height: 55vh;
+        width: 90%;
+        overflow-y: auto;
+        border-radius: 15px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255,0.2);
+        box-shadow:inset 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .minicontainer
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px;
+        border-radius: 12px;
+        padding: 15px;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+    }
+
+    .minicontainer:hover
+    {
+        transform: scale(1.02);
+        box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .btnwrp
+    {
+        display: flex;
+        gap: 10px;
+    }
+
+    .todo::-webkit-scrollbar
+    {
+        width: 8px;
+    }
+
+    .todo::-webkit-scrollbar-track
+    {
+        background: transparent;
+    }
+
+    .todo::-webkit-scrollbar-thumb
+    {
+        background: #198754;
+        border-radius: 20px;
+    }
+    @media (max-width: 1350px)
+    {
+        .maincontainer
+        {
+            width: 90vw;
+            height: 85vh;
+        }
+
+        input
+        {
+            width: 350px;
+        }
+
+        .todo
+        {
+            width: 95%;
+        }
+    }
+
+    @media (max-width: 800px)
+    {
+        .maincontainer
+        {
+            width: 95vw;
+            height: 95vh;
+            padding: 15px;
+        }
+
+        .head
+        {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            align-items: center;
+        }
+
+        input
+        {
+            width: 90%;
+            max-width: 100%;
+        }
+
+        .submit
+        {
+            width: 90%;
+        }
+
+        .todo
+        {
+            width: 100%;
+            height: 65vh;
+        }
+
+        .minicontainer
+        {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .btnwrp
+        {
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btnwrp button
+        {
+            width: 120px;
+        }
+
+        p
+        {
+            word-break: break-word;
+        }
+    }
+</style>
+<body>
+    <div class="maincontainer">
+        <div class="head">
+            <input type="text" name="" id="">
+            <button class="submit">submit</button>
+        </div>
+        <div class="todo">
+
+        </div>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>

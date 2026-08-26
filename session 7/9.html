@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9</title>
+    
+</head>
+<body>
+
+    <button id="addCartBtn">Add to Cart</button>
+    
+    <div id="cartSection">
+        <h3>Your Cart</h3>
+        <ul id="cartItems"></ul>
+    </div>
+
+    <script>
+        const button = document.querySelector('#addCartBtn');
+        
+        function addToCart() {
+            const cart = document.querySelector('#cartItems');
+            const item = document.createElement('li');
+            item.innerText = "Product Name";
+            cart.appendChild(item);
+        }
+        
+        button.addEventListener('click', addToCart);
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6</title>
+</head>
+<body>
+    <script>
+        function checkPlaylistURL(url) {
+            if (!url.startsWith('https://open.spotify.com/')) {
+                throw new Error('Invalid Spotify URL');
+            }
+        }
+
+        try {
+            checkPlaylistURL('http://invalid-url.com');
+        } catch (error) {
+            console.log(error.message);
+        } finally {
+            console.log('Validation complete');
+        }
+    </script>
+</body>
+</html>

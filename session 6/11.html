@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 11</title>
+    
+</head>
+<body>
+
+    <input type="text" id="colorInput" placeholder="Type a color (e.g., yellow)">
+    <div id="moodbox"></div>
+
+    <script>
+        var colorInput = document.getElementById('colorInput');
+        var moodbox = document.getElementById('moodbox');
+
+        colorInput.addEventListener('input', function() {
+            moodbox.style.backgroundColor = colorInput.value;
+        });
+    </script>
+</body>
+</html>

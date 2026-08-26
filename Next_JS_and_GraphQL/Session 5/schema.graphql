@@ -1,0 +1,26 @@
+# Song type with title, artist, and duration in seconds
+type Song {
+  id: ID!
+  title: String!
+  artist: String!
+  duration: Int!
+}
+
+# Playlist type containing list of songs
+type Playlist {
+  id: ID!
+  name: String!
+  songs: [Song!]!
+}
+
+# Root Query type
+type Query {
+  # Fetch single playlist by ID
+  playlist(id: ID!): Playlist
+  
+  # Fetch all playlists
+  playlists: [Playlist!]!
+  
+  # Fetch all songs with duration
+  songs: [Song!]!
+}

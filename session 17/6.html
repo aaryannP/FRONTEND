@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6</title>
+</head>
+<body>
+    <div id="shoppingCart">
+        <div>
+            <span>Product A</span>
+            <span class="delete-icon">X</span>
+        </div>
+        <div>
+            <span>Product B</span>
+            <span class="delete-icon">X</span>
+        </div>
+    </div>
+
+    <script>
+        const cart = document.getElementById('shoppingCart');
+        cart.addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete-icon')) {
+                event.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+</head>
+<body>
+    <script>
+        const movies = [
+            { title: "Inception", year: 2010, rating: { imdb: 8.8, rottenTomatoes: 87 } },
+            { title: "Interstellar", year: 2014, rating: { imdb: 8.7, rottenTomatoes: 73 } },
+            { title: "The Dark Knight", year: 2008, rating: { imdb: 9.0, rottenTomatoes: 94 } }
+        ];
+
+        for (let i = 0; i < movies.length; i++) {
+            console.log(movies[i].title + " " + movies[i].rating.imdb);
+        }
+    </script>
+</body>
+</html>

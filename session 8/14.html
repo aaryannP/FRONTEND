@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 14</title>
+</head>
+<body>
+    <script>
+        const orders = [
+            {
+                orderId: "ORD101",
+                items: [{ itemName: "Book", price: 300 }, { itemName: "Pen", price: 50 }],
+                delivery: { address: "Delhi", status: "Delivered" }
+            },
+            {
+                orderId: "ORD102",
+                items: [{ itemName: "T-shirt", price: 700 }, { itemName: "Jeans", price: 1200 }],
+                delivery: { address: "Mumbai", status: "Pending" }
+            }
+        ];
+
+        for (let i = 0; i < orders.length; i++) {
+            let totalOrderPrice = 0;
+            for (let j = 0; j < orders[i].items.length; j++) {
+                totalOrderPrice += orders[i].items[j].price;
+            }
+            console.log(orders[i].orderId + " " + totalOrderPrice);
+        }
+    </script>
+</body>
+</html>

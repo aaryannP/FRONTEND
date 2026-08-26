@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 3</title>
+</head>
+<body>
+    <ul id="favSongs">
+        <li>
+            <span>Favorite Song 1</span>
+            <button class="remove-btn">Remove</button>
+        </li>
+        <li>
+            <span>Favorite Song 2</span>
+            <button class="remove-btn">Remove</button>
+        </li>
+    </ul>
+
+    <script>
+        const songList = document.getElementById('favSongs');
+        songList.addEventListener('click', function(event) {
+            if (event.target.classList.contains('remove-btn')) {
+                event.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>

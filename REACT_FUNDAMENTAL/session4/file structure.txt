@@ -1,0 +1,8 @@
+src
+│
+├── App.js
+├── LikeButton.js
+├── CartItem.js
+├── SongVote.js
+├── Rating.js
+└── ...

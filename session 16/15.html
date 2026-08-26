@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 15</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const transactions = [
+            { id: 1, amount: 500 },
+            { id: 2, amount: 1500 },
+            { id: 3, amount: 350 }
+        ];
+
+        const totalSpent = transactions.map(t => t.amount).reduce((total, amt) => total + amt, 0);
+
+        document.getElementById('result').innerText = totalSpent;
+    </script>
+</body>
+</html>

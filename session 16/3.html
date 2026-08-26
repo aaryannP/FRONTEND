@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 3</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const playlists = [
+            { name: "Lo-Fi Beats", isPublic: true },
+            { name: "My Private Mix", isPublic: false },
+            { name: "Gym Motivation", isPublic: true }
+        ];
+
+        const publicPlaylists = playlists.filter(playlist => playlist.isPublic);
+        
+        document.getElementById('result').innerHTML = JSON.stringify(publicPlaylists);
+    </script>
+</body>
+</html>

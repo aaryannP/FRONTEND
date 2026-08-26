@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 8</title>
+</head>
+<body>
+    <script>
+        function addNewPlaylist() {
+            const playlist = {
+                name: 'My Playlist',
+                description: 'Playlist Description'
+            };
+
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(playlist)
+            })
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+            });
+        }
+        addNewPlaylist();
+    </script>
+</body>
+</html>

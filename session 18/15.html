@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 15 - Real Console Error Summary</title>
+    
+</head>
+<body>
+    <h2>Real Error Message Explanation (Own Words)</h2>
+    <div class="box">
+        <h3>Error: <code>Uncaught SyntaxError: "undefined" is not valid JSON</code></h3>
+        <hr>
+        <p><strong>My Explanation:</strong> Yeh error is wajah se aata hai kyunki <code>JSON.parse()</code> method hamesha ek valid structured string JSON format ko object me badalne ke liye banaya gaya hai. Jab hum isme directly variable keyword ya system default keyword text literal value <code>undefined</code> bhej dete hain, toh internal structure validate nahi ho pata aur javascript parser breaks down hokar crash processing warning phenk deta hai.</p>
+        <p><strong>Fix Strategy:</strong> Kisi bhi dynamic object parse processing setup ko execute karne se pehle target conditional check verify karein taaki parsing context value safe format parameters dynamic range mapping context ensure kar sake.</p>
+    </div>
+</body>
+</html>

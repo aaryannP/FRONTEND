@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 10</title>
+</head>
+<body>
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users/2')
+            .then(response => response.json())
+            .then(user => {
+                console.log(user.name);
+                return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`);
+            })
+            .then(response => response.json())
+            .then(posts => {
+                posts.forEach(post => {
+                    console.log(post.title);
+                });
+            });
+    </script>
+</body>
+</html>

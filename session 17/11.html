@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 11</title>
+</head>
+<body>
+    <button id="loadNotify">Load Notification</button>
+
+    <div id="feedContainer">
+        <div>
+            <span>Notification 1</span>
+            <button class="dismiss-btn">Dismiss</button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('feedContainer');
+        const loadBtn = document.getElementById('loadNotify');
+
+        loadBtn.addEventListener('click', function() {
+            const newNotify = document.createElement('div');
+            newNotify.innerHTML = `<span>Notification</span> <button class="dismiss-btn">Dismiss</button>`;
+            container.appendChild(newNotify);
+        });
+
+        container.addEventListener('click', function(event) {
+            if (event.target.classList.contains('dismiss-btn')) {
+                event.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>

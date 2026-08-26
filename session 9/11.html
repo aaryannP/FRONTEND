@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 11</title>
+</head>
+<body>
+    <ul id="restaurantList"></ul>
+    <button onclick="clearFavorites()">Clear Favorites</button>
+
+    <script>
+        function displayRestaurants() {
+            const list = document.getElementById('restaurantList');
+            list.innerHTML = '';
+            let restaurants = JSON.parse(localStorage.getItem('favRestaurants')) || [];
+            restaurants.forEach(res => {
+                const li = document.createElement('li');
+                li.textContent = res;
+                list.appendChild(li);
+            });
+        }
+
+        function clearFavorites() {
+            localStorage.removeItem('favRestaurants');
+            displayRestaurants();
+        }
+
+        window.onload = displayRestaurants;
+    </script>
+</body>
+</html>

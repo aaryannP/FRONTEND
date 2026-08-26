@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9</title>
+</head>
+<body>
+    <script>
+        function getOrderTotal(items) {
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].price < 0) {
+                    throw new Error('Invalid item price');
+                }
+            }
+        }
+
+        try {
+            let cart = [{ name: "Burger", price: -100 }];
+            getOrderTotal(cart);
+        } catch (error) {
+            console.log("Something went wrong: " + error.message);
+        }
+    </script>
+</body>
+</html>

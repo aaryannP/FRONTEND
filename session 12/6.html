@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 6</title>
+</head>
+<body>
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify({
+                title: 'My Custom Title',
+                body: 'This is my custom post body text.'
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if ('id' in data) {
+                console.log("id property is present");
+            }
+        });
+    </script>
+</body>
+</html>

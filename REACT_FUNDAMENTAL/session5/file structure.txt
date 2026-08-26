@@ -1,0 +1,8 @@
+src
+│
+├── App.js
+├── LikeButton.js
+├── SearchBar.js
+├── LoginForm.js
+├── PlaylistAdder.js
+└── ...

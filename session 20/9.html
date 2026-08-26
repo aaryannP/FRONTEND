@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9</title>
+</head>
+<body>
+    <h3>Followers</h3>
+    <input type="text" id="followerInput" placeholder="Follower name"><br>
+    <button id="addBtn">Add Follower</button>
+    <ul id="followerList"></ul>
+
+    <script>
+        let followers = [];
+        const input = document.getElementById('followerInput');
+        const list = document.getElementById('followerList');
+
+        document.getElementById('addBtn').addEventListener('click', () => {
+            addFollower(input.value);
+            input.value = "";
+        });
+
+        function addFollower(name) {
+            if (name && name.trim() !== "") {
+                followers.push(name.trim());
+                renderList();
+            }
+        }
+
+        function renderList() {
+            list.innerHTML = "";
+            followers.forEach(f => {
+                let li = document.createElement('li');
+                li.innerText = f;
+                list.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

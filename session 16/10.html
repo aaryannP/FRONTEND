@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 10</title>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const videos = [
+            { title: "Video A", views: 500000 },
+            { title: "Video B", views: 1500000 },
+            { title: "Video C", views: 3000000 }
+        ];
+
+        const popularVideo = videos.find(video => video.views > 1000000);
+        
+        document.getElementById('result').innerHTML = JSON.stringify(popularVideo);
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 10</title>
+</head>
+<body>
+    <div id="total"></div>
+
+    <script type="module" id="cartUtils">
+        let cart = [];
+        export function addToCart(item, price) { cart.push({item, price}); return cart; }
+        export function removeFromCart(itemName) { cart = cart.filter(i => i.item !== itemName); return cart; }
+        export function calculateTotal() { return cart.reduce((sum, i) => sum + i.price, 0); }
+    </script>
+
+    <script type="module">
+        const code = document.getElementById('cartUtils').text;
+        const blob = new Blob([code], { type: 'application/javascript' });
+        const url = URL.createObjectURL(blob);
+
+        import(url).then(cartUtils => {
+            cartUtils.addToCart("Trimmer", 1299);
+            cartUtils.addToCart("T-Shirt", 499);
+            
+            console.log(cartUtils.calculateTotal());
+            document.getElementById('total').innerText = cartUtils.calculateTotal();
+        });
+    </script>
+</body>
+</html>

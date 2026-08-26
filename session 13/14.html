@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 14</title>
+</head>
+<body>
+    <script>
+        try {
+            JSON.parse('{"bad json"');
+        } catch(err) {
+            console.error(err.stack);
+        }
+    </script>
+</body>
+</html>

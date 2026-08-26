@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 2</title>
+</head>
+<body>
+    <h3>Flipkart Product</h3>
+    <button id="addToCartBtn">ADD TO CART</button>
+    <div id="cartStatus">Cart Items: 0</div>
+
+    <p><strong>Bug Noticed:</strong> Clicking multiple times kept increasing item count.</p>
+    <p><strong>Fix:</strong> Added a boolean check to allow adding only once.</p>
+
+    <script>
+        const btn = document.getElementById('addToCartBtn');
+        const status = document.getElementById('cartStatus');
+        let isAdded = false;
+
+        btn.addEventListener('click', () => {
+            if (!isAdded) {
+                isAdded = true;
+                status.innerText = "Cart Items: 1";
+            }
+        });
+    </script>
+</body>
+</html>

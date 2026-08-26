@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6</title>
+</head>
+<body>
+    <script>
+        class Playlist {
+            constructor(name, songs) {
+                this.name = name;
+                this.songs = songs;
+            }
+
+            getSongCount() {
+                return this.songs.length;
+            }
+        }
+
+        const myFavPlaylist = new Playlist('Lo-Fi Beats', ['Midnight Coffee', 'Rainy Night', 'Warm Blanket']);
+        const count = myFavPlaylist.getSongCount();
+        console.log(count);
+    </script>
+</body>
+</html>

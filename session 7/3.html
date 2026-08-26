@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 3</title>
+    
+</head>
+<body>
+
+    <button onclick="addRandomSong()">Add Song</button>
+    <div id="playlist"></div>
+
+    <script>
+        const songs = ["Blinding Lights", "Stay", "Shape of You", "Dynamite", "Starboy"];
+        
+        function addRandomSong() {
+            const randomIndex = Math.floor(Math.random() * songs.length);
+            const playlistDiv = document.getElementById('playlist');
+            
+            const card = document.createElement('div');
+            card.innerText = songs[randomIndex];
+            
+            playlistDiv.appendChild(card);
+        }
+    </script>
+</body>
+</html>

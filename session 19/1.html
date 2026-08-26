@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Wishlist Manager Architecture</title>
+    
+</head>
+<body>
+
+<div class="container">
+    <h2>Flipkart Wishlist Manager App Architecture Diagram</h2>
+    
+    <div class="diagram">
+        <div class="box">1. Add Item Form (UI Input)</div>
+        <div class="arrow">↓ (Form Submit Data)</div>
+        <div class="box storage-box">2. Storage (JavaScript Array / localStorage)</div>
+        <div class="arrow">↓ (Re-render Event)</div>
+        <div class="box">3. Display Wishlist (UI List)</div>
+        <div class="arrow">↑ ↓ (Edit / Delete Actions Trigger Update)</div>
+        <div class="box storage-box">4. Mutate Array & Refresh UI</div>
+    </div>
+
+    <div class="description">
+        <h3>Data Flow Explanation:</h3>
+        <ul>
+            <li><strong>Add Item Form:</strong> Captures product title, price, and image URL. On submission, data is packaged into an object.</li>
+            <li><strong>Storage:</strong> The object is pushed to a global JavaScript array (and optionally serialized to <code>localStorage</code> to persist data).</li>
+            <li><strong>Display Wishlist:</strong> A rendering function loops through the storage array and dynamically generates HTML elements to show the items.</li>
+            <li><strong>Edit/Delete Actions:</strong> Clicking 'Delete' splices the element from the array using its index. Clicking 'Edit' updates fields. Both actions immediately trigger the rendering function to keep the UI in sync.</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Playlist Manager (Complete)</title>
+    
+</head>
+<body>
+
+<div class="container">
+    <h2 id="formTitle">Create Playlist</h2>
+    <form id="playlistForm">
+        <input type="hidden" id="editIndex">
+        <div class="form-group">
+            <label for="name">Playlist Name</label>
+            <input type="text" id="name" required placeholder="My Awesome Playlist">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Add an optional description"></textarea>
+        </div>
+        <button type="submit" id="submitBtn">Create</button>
+    </form>
+</div>
+
+<div class="playlist-list">
+    <h3>Your Playlists</h3>
+    <div id="displayArea"></div>
+</div>
+
+<script>
+    let playlists = [];
+
+    document.getElementById('playlistForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const description = document.getElementById('description').value;
+        const editIndex = document.getElementById('editIndex').value;
+        
+        if(editIndex !== "") {
+            // Update mode
+            playlists[editIndex] = { name, description };
+            document.getElementById('editIndex').value = "";
+            document.getElementById('formTitle').innerText = "Create Playlist";
+            document.getElementById('submitBtn').innerText = "Create";
+        } else {
+            // Create mode
+            playlists.push({ name, description });
+        }
+        
+        renderPlaylists();
+        this.reset();
+    });
+
+    function renderPlaylists() {
+        const displayArea = document.getElementById('displayArea');
+        displayArea.innerHTML = '';
+        
+        playlists.forEach((playlist, index) => {
+            const div = document.createElement('div');
+            div.className = 'playlist-item';
+            div.innerHTML = `
+                <h4>\${playlist.name}</h4>
+                <p>\${playlist.description || 'No description provided.'}</p>
+                <div class="actions-btn">
+                    <button class="btn-small btn-edit" onclick="editPlaylist(\${index})">Edit</button>
+                    <button class="btn-small btn-delete" onclick="deletePlaylist(\${index})">Delete</button>
+                </div>
+            `;
+            displayArea.appendChild(div);
+        });
+    }
+
+    window.editPlaylist = function(index) {
+        document.getElementById('name').value = playlists[index].name;
+        document.getElementById('description').value = playlists[index].description;
+        document.getElementById('editIndex').value = index;
+        document.getElementById('formTitle').innerText = "Edit Playlist";
+        document.getElementById('submitBtn').innerText = "Save Changes";
+    }
+
+    window.deletePlaylist = function(index) {
+        playlists.splice(index, 1);
+        renderPlaylists();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 8</title>
+</head>
+<body>
+    <input type="text" id="restaurantInput">
+    <button onclick="addRestaurant()">Add</button>
+    <ul id="restaurantList"></ul>
+
+    <script>
+        let restaurants = JSON.parse(localStorage.getItem('favRestaurants')) || [];
+
+        function displayRestaurants() {
+            const list = document.getElementById('restaurantList');
+            list.innerHTML = '';
+            restaurants.forEach(res => {
+                const li = document.createElement('li');
+                li.textContent = res;
+                list.appendChild(li);
+            });
+        }
+
+        function addRestaurant() {
+            const input = document.getElementById('restaurantInput');
+            if (input.value.trim() !== "" && restaurants.length < 3) {
+                restaurants.push(input.value.trim());
+                localStorage.setItem('favRestaurants', JSON.stringify(restaurants));
+                input.value = "";
+                displayRestaurants();
+            }
+        }
+
+        window.onload = displayRestaurants;
+    </script>
+</body>
+</html>

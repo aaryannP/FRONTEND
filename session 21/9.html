@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9 - Delete Playlist Link</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>Delete Playlist Link</h3>
+        <input type="number" id="deleteIndex" placeholder="Enter Index to Delete">
+        <button onclick="handleDelete()">Delete Link</button>
+        <div id="result">Current Playlists...</div>
+    </div>
+
+    <script>
+        if(!localStorage.getItem('myPlaylists')) {
+            localStorage.setItem('myPlaylists', JSON.stringify([{name:"Rock", url:"https://spotify.com"}, {name:"Pop", url:"https://youtube.com"}]));
+        }
+
+        function displayData() {
+            document.getElementById('result').innerText = localStorage.getItem('myPlaylists');
+        }
+        displayData();
+
+        function deletePlaylistLink(index) {
+            let myPlaylists = JSON.parse(localStorage.getItem('myPlaylists')) || [];
+            if(index >= 0 && index < myPlaylists.length) {
+                myPlaylists.splice(index, 1);
+                localStorage.setItem('myPlaylists', JSON.stringify(myPlaylists));
+                displayData();
+            } else {
+                alert("Invalid Index");
+            }
+        }
+
+        function handleDelete() {
+            const index = parseInt(document.getElementById('deleteIndex').value);
+            if(!isNaN(index)) {
+                deletePlaylistLink(index);
+            }
+        }
+    </script>
+</body>
+</html>

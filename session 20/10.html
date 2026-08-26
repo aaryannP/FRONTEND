@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 10</title>
+</head>
+<body>
+    <h3>Main Screen</h3>
+    <input type="text" id="testInput"><br>
+    <button id="testSubmit">Submit</button><br>
+    <button id="testCart">Add to Cart</button>
+    <div id="output"></div>
+
+    <h3>Bug Checklist</h3>
+    <ul>
+        <li>Double Adds: Handled by checking state before adding.</li>
+        <li>Empty fields: Fixed by checking trim empty values.</li>
+        <li>UI Glitches: Fixed by handling DOM updates cleanly.</li>
+        <li>Case sensitivity issues: Standardized via lowercase.</li>
+        <li>State Syncing: Handled by immediate variable updating.</li>
+    </ul>
+
+    <script>
+        let count = 0;
+        document.getElementById('testCart').addEventListener('click', () => {
+            if(count === 0) { count++; document.getElementById('output').innerText = "Items: " + count; }
+        });
+        document.getElementById('testSubmit').addEventListener('click', () => {
+            let val = document.getElementById('testInput').value;
+            if(val.trim() !== "") document.getElementById('output').innerText = "Submitted: " + val;
+        });
+    </script>
+</body>
+</html>

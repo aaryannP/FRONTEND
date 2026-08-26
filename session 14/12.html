@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+</head>
+<body>
+    <ul id="wishlist-ui"></ul>
+
+    <script type="module" id="wishlistUtils">
+        let wishlist = [];
+        export function addToWishlist(item) { wishlist.push(item); }
+        export function getWishlist() { return wishlist; }
+    </script>
+
+    <script type="module">
+        const code = document.getElementById('wishlistUtils').text;
+        const blob = new Blob([code], { type: 'application/javascript' });
+        const url = URL.createObjectURL(blob);
+
+        import(url).then(utils => {
+            utils.addToWishlist("Smartwatch");
+            utils.addToWishlist("Wireless Earbuds");
+            
+            const list = utils.getWishlist();
+            console.log(list);
+
+            const ui = document.getElementById('wishlist-ui');
+            list.forEach(item => {
+                ui.innerHTML += `<li>${item}</li>`;
+            });
+        });
+    </script>
+</body>
+</html>

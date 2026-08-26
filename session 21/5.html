@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 5 - Validate URL</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>Validate URL - Duplicate</h3>
+        <input type="text" id="urlInput" placeholder="Enter URL (e.g., https://youtube.com)">
+        <button onclick="checkURL()">Validate</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function validateURL(url) {
+            return url.startsWith('https://') && url.includes('.');
+        }
+
+        function checkURL() {
+            const url = document.getElementById('urlInput').value;
+            const isValid = validateURL(url);
+            const resultDiv = document.getElementById('result');
+            if(isValid) {
+                resultDiv.innerText = "Valid URL!";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.innerText = "Invalid URL! Must start with https:// and contain a dot (.)";
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

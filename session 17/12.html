@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+</head>
+<body>
+    <button id="addBtn">Add Dynamic Card</button>
+
+    <div id="cardContainer">
+        <div>
+            <span>Card 1</span>
+            <span class="remove-btn">X</span>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('cardContainer');
+        const addBtn = document.getElementById('addBtn');
+
+        addBtn.addEventListener('click', function() {
+            const newCard = document.createElement('div');
+            newCard.innerHTML = `<span>Card Dynamic</span> <span class="remove-btn">X</span>`;
+            container.appendChild(newCard);
+        });
+
+        container.addEventListener('click', function(event) {
+            if (event.target.classList.contains('remove-btn')) {
+                event.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>

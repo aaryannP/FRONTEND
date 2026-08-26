@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+</head>
+<body>
+    <h3>Zomato Review Form</h3>
+    <input type="number" id="rating" placeholder="Rating (1-5)"><br>
+    <textarea id="review" placeholder="Write review..."></textarea><br>
+    <div id="errorDiv" style="color: red; display: none;"></div><br>
+    <button id="submitBtn">Submit</button>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', () => {
+            const rating = parseInt(document.getElementById('rating').value);
+            const review = document.getElementById('review').value.trim();
+            const err = document.getElementById('errorDiv');
+
+            if (!rating || rating < 1 || rating > 5) {
+                err.innerText = "Error: Rating must be 1-5";
+                err.style.display = "block";
+            } else if (review === "") {
+                err.innerText = "Error: Review cannot be blank";
+                err.style.display = "block";
+            } else {
+                err.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

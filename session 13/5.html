@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 5</title>
+</head>
+<body>
+    <script>
+        try {
+            let productData = '{"name":"Shoes","price":999'; // Invalid JSON
+            JSON.parse(productData);
+        } catch (error) {
+            console.log('Invalid product data');
+        } finally {
+            console.log('Parsing attempt finished');
+        }
+    </script>
+</body>
+</html>

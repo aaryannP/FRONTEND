@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 1</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script type="module" id="utils">
+        export function generateOrderId() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < 8; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+    </script>
+
+    <script type="module">
+        const utilsScript = document.getElementById('utils').text;
+        const blob = new Blob([utilsScript], { type: 'application/javascript' });
+        const utilsUrl = URL.createObjectURL(blob);
+        
+        import(utilsUrl).then(module => {
+            const newOrderId = module.generateOrderId();
+            console.log(newOrderId);
+            document.getElementById('output').innerText = newOrderId;
+        });
+    </script>
+</body>
+</html>

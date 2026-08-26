@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 15 - Link Specific Validation</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>Playlist URL Validator</h3>
+        <input type="text" id="playlistUrl" placeholder="Enter Spotify or YouTube Link">
+        <div id="errorDisplay" class="error-text">Validation Failed! Link must match specific streaming patterns.</div>
+        <button onclick="runValidation()">Validate Link</button>
+    </div>
+
+    <script>
+        function validateLink(url) {
+            const errorDiv = document.getElementById('errorDisplay');
+            const condition1 = url.startsWith('https://');
+            const condition2 = url.includes('spotify.com') || url.includes('youtube.com');
+            
+            if (condition1 && condition2) {
+                errorDiv.style.display = 'none';
+                alert("Validation Passed!");
+            } else {
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        function runValidation() {
+            const urlValue = document.getElementById('playlistUrl').value;
+            validateLink(urlValue);
+        }
+    </script>
+</body>
+</html>

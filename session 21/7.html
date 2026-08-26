@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 7 - Toggle Theme</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>Toggle Theme System</h3>
+        <p>Click the button below to switch modes.</p>
+        <button onclick="toggleTheme()">Change Theme</button>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark-mode' : 'light-mode');
+        }
+
+        if (localStorage.getItem('theme') === 'dark-mode') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+</html>

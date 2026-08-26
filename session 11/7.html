@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 7</title>
+</head>
+<body>
+    <script>
+        const getFollowersCount = new Promise((resolve) => {
+            setTimeout(() => {
+                const count = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+                resolve(count);
+            }, 1000);
+        });
+
+        getFollowersCount.then((X) => {
+            console.log(`You have ${X} new followers`);
+        });
+    </script>
+</body>
+</html>

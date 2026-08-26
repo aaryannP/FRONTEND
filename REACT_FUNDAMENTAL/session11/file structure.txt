@@ -1,0 +1,8 @@
+src
+│
+├── App.js
+├── MovieList.js
+├── AddPlaylist.js
+├── RestaurantSearch.js
+├── AddComment.js
+└── ...

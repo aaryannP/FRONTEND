@@ -1,0 +1,8 @@
+src
+│
+├── App.js
+├── HomePage.js
+├── DealsPage.js
+├── CartPage.js
+├── NotFound.js
+└── ...

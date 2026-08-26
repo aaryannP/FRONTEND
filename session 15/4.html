@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 4</title>
+</head>
+<body>
+    <script>
+        class Playlist {
+            constructor(name, songs) {
+                this.name = name;
+                this.songs = songs;
+            }
+
+            displayPlaylist() {
+                console.log(`Playlist: ${this.name}\nSongs: ${this.songs.join(', ')}`);
+            }
+        }
+
+        const chillVibes = new Playlist('Chill Vibes', ['Song A', 'Song B', 'Song C']);
+        chillVibes.displayPlaylist();
+    </script>
+</body>
+</html>

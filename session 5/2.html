@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 2</title>
+</head>
+<body>
+    <script>
+        function createSpotifyButton(label, color) {
+            const button = document.createElement('button');
+            button.innerText = label;
+            button.style.backgroundColor = color;
+            return button;
+        }
+
+        const spotifyBtn = createSpotifyButton('Play Music', 'green');
+        document.body.appendChild(spotifyBtn);
+    </script>
+</body>
+</html>

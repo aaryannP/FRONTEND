@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 5</title>
+</head>
+<body>
+    <h3>Login Form</h3>
+    <input type="text" id="email" placeholder="Email"><br>
+    <div id="emailError" style="color: red; display: none;">Email cannot be left empty.</div><br>
+    
+    <input type="password" id="password" placeholder="Password"><br>
+    <div id="passError" style="color: red; display: none;">Password cannot be left empty.</div><br>
+    
+    <button id="loginBtn">Login</button>
+
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            document.getElementById('emailError').style.display = email === "" ? "block" : "none";
+            document.getElementById('passError').style.display = password === "" ? "block" : "none";
+        });
+    </script>
+</body>
+</html>

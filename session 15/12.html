@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+</head>
+<body>
+    <script>
+        class Playlist {
+            constructor(name, songs) {
+                this.name = name;
+                this.songs = songs;
+            }
+
+            displayPlaylist() {
+                console.log(`Playlist: ${this.name}\nSongs: ${this.songs.join(', ')}`);
+            }
+
+            addSong(songName) {
+                this.songs.push(songName);
+            }
+        }
+
+        const chillVibes = new Playlist('Chill Vibes', ['Song A', 'Song B', 'Song C']);
+        chillVibes.addSong('Song D');
+        chillVibes.addSong('Song E');
+        chillVibes.displayPlaylist();
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 8 - Sources Breakpoint Debugging (Duplicate)</title>
+    
+</head>
+<body>
+    <h2>Sources Tab Breakpoint Test</h2>
+    <p>Open DevTools, navigate to the <strong>Sources</strong> tab, locate this file, set a breakpoint on line 21 (inside the function), and then click the button.</p>
+    <button onclick="testBreakpoint()">Run Breakpoint Function</button>
+
+    <script>
+        function addToCart(item, quantity) {
+            console.log("Analyzing variables inside function..."); // Set breakpoint here
+            if (quantity === 0) {
+                throw new Error("Quantity cannot be 0. Execution halted.");
+            }
+        }
+
+        function testBreakpoint() {
+            addToCart("Smart Watch", 0);
+        }
+    </script>
+</body>
+</html>

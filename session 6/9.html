@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 9</title>
+    
+</head>
+<body>
+
+    <button id="toggleBtn">Dark Mode</button>
+
+    <script>
+        var btn = document.getElementById('toggleBtn');
+        
+        btn.addEventListener('click', function() {
+            if (document.body.style.backgroundColor === 'black') {
+                document.body.style.backgroundColor = 'white';
+                document.body.style.color = 'black';
+                btn.innerHTML = 'Dark Mode';
+            } else {
+                document.body.style.backgroundColor = 'black';
+                document.body.style.color = 'white';
+                btn.innerHTML = 'Light Mode';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 4</title>
+</head>
+<body>
+    <script>
+        function getChannelNames(jsonStr) {
+            return JSON.parse(jsonStr);
+        }
+
+        const sampleJSON = '["T-Series", "MrBeast", "PewDiePie"]';
+        const channelsArray = getChannelNames(sampleJSON);
+        console.log(channelsArray);
+    </script>
+</body>
+</html>

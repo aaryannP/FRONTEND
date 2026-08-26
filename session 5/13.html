@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 13</title>
+</head>
+<body>
+    <script>
+        function createPlaylistButton(songName, themeColor) {
+            const button = document.createElement('button');
+            button.innerText = songName;
+            button.style.backgroundColor = themeColor;
+            return button;
+        }
+
+        document.body.appendChild(createPlaylistButton('Song A', 'green'));
+        document.body.appendChild(createPlaylistButton('Song B', 'red'));
+        document.body.appendChild(createPlaylistButton('Song C', 'purple'));
+    </script>
+</body>
+</html>

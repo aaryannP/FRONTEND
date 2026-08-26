@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 11</title>
+    
+</head>
+<body>
+
+    <div id="movieList">
+        <div>
+            <span>Movie 1</span>
+            <button class="remove-btn">Remove</button>
+        </div>
+        <div>
+            <span>Movie 2</span>
+            <button class="remove-btn">Remove</button>
+        </div>
+        <div>
+            <span>Movie 3</span>
+            <button class="remove-btn">Remove</button>
+        </div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.remove-btn');
+        
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.parentElement;
+                card.remove();
+            });
+        });
+    </script>
+</body>
+</html>

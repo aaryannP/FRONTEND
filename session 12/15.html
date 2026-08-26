@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 15</title>
+</head>
+<body>
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/albums')
+            .then(response => response.json())
+            .then(albums => {
+                return albums.filter(album => album.userId === 2);
+            })
+            .then(filteredAlbums => {
+                filteredAlbums.forEach(album => {
+                    console.log(album.title);
+                });
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 12</title>
+</head>
+<body>
+    <script>
+        function checkPayment() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve('Payment successful!');
+                }, 1000);
+            });
+        }
+
+        checkPayment().then((message) => {
+            console.log(message);
+        });
+    </script>
+</body>
+</html>

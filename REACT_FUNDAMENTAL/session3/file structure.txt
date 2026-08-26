@@ -1,0 +1,6 @@
+src
+│
+├── App.js
+├── ProductCard.js
+├── UserProfile.js
+└── ...

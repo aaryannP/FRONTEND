@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 8</title>
+</head>
+<body>
+    <div id="profiles"></div>
+
+    <script type="module" id="instaHelpers">
+        export default function formatFollowers(count) {
+            if (count >= 1000000) return (count / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+            if (count >= 1000) return (count / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+            return count.toString();
+        }
+    </script>
+
+    <script type="module">
+        const code = document.getElementById('instaHelpers').text;
+        const blob = new Blob([code], { type: 'application/javascript' });
+        const url = URL.createObjectURL(blob);
+
+        import(url).then(module => {
+            const formatFollowers = module.default;
+            const users = [1200, 2500000, 850];
+            const target = document.getElementById('profiles');
+
+            users.forEach((count) => {
+                const formatted = formatFollowers(count);
+                console.log(formatted);
+                target.innerHTML += `<p>${formatted}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
