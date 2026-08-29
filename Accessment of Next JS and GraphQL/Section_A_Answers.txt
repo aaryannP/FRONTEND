@@ -1,0 +1,309 @@
+================================================================================
+           REACTJS ASSESSMENT M4-A1: SECTION A - CONCEPT APPLICATION
+================================================================================
+
+--------------------------------------------------------------------------------
+QUESTION 1 (S1) - React Fundamentals: Props vs Hardcoding
+--------------------------------------------------------------------------------
+SCENARIO:
+You are building a food delivery app where dozens of restaurant cards must be 
+rendered on the homepage. Each card shows the restaurant name, cuisine type, 
+rating, and estimated delivery time. You plan to create a single RestaurantCard 
+component that can be reused for every card.
+
+QUESTION:
+Explain why props are the correct mechanism to pass the restaurant data into 
+each RestaurantCard instance rather than hardcoding the values inside the 
+component. What specific problem does props-driven design solve when the same 
+component must render data for 50 different restaurants from an API response array?
+
+--------------------------------------------------------------------------------
+ANSWER:
+
+1. Why Props are the Correct Mechanism over Hardcoding:
+   - Component Reusability & Data Decoupling: Props (short for "properties") act 
+     as parameters passed to a React component, turning it into a pure, dynamic 
+     UI template. Hardcoding values directly inside a component tightly couples 
+     the component's layout with specific data, making it static and incapable 
+     of displaying any other restaurant. Props allow the RestaurantCard component 
+     to remain a single source of truth for presentation layout while dynamically 
+     accepting different restaurant details (name, cuisine, rating, delivery time).
+
+2. Specific Problem Solved by Props-Driven Design for 50 Restaurants:
+   - Solves Code Duplication (DRY Principle): Without props, rendering 50 
+     different restaurants would require writing 50 separate hardcoded components 
+     (e.g., RestaurantCard1, RestaurantCard2, ..., RestaurantCard50) or duplicating 
+     50 blocks of HTML code.
+   - Dynamic Mapping over API Arrays: Props enable array mapping using JavaScript's 
+     `.map()` method. When the API returns an array of 50 restaurant objects, a single 
+     RestaurantCard component can be rendered dynamically in a loop:
+     
+     restaurants.map((restaurant) => (
+       <RestaurantCard key={restaurant.id} data={restaurant} />
+     ))
+
+   - Maintainability & Scalability: If the UI design of the card changes in the future 
+     (e.g., adding a discount badge), updating the single RestaurantCard component 
+     automatically updates all 50 rendered cards across the application.
+
+
+================================================================================
+QUESTION 2 (S2) - React Fundamentals: Hooks & Initial Render Execution
+--------------------------------------------------------------------------------
+SCENARIO:
+You are developing the live order tracking screen for a food delivery platform. 
+When the screen loads, it must immediately call the backend API to get the 
+current order status. Whenever the order status changes — for example from 
+'Preparing' to 'Out for Delivery' — the UI must update automatically without 
+a page reload.
+
+QUESTION:
+Which two React hooks would you use to manage this behaviour, and in what order 
+do they execute on the component's initial render? Justify why the API call 
+must be placed inside a hook rather than directly inside the component function body.
+
+--------------------------------------------------------------------------------
+ANSWER:
+
+1. Two React Hooks Required:
+   - useState: To hold and update the reactive state of the order status 
+     (e.g., `const [orderStatus, setOrderStatus] = useState('Loading...')`).
+   - useEffect: To trigger asynchronous side effects, such as making the initial 
+     backend API call when the component mounts or subscribing to real-time status updates.
+
+2. Execution Order on Component's Initial Render:
+   - Step 1: `useState` initializes state during the initial synchronous render phase 
+     as React executes the component function body.
+   - Step 2: The component returns JSX based on the initial state (`'Loading...'`) 
+     and React paints the initial DOM elements.
+   - Step 3: `useEffect` executes AFTER the component has mounted to the DOM (after 
+     the initial render cycle is complete).
+
+3. Justification for Placing the API Call Inside `useEffect` vs Component Body:
+   - Preventing Infinite Render Loops: The component function body runs on EVERY render. 
+     If an API call is placed directly in the function body, fetching data and updating 
+     state via `setOrderStatus()` triggers a state change -> which triggers a re-render 
+     -> which triggers the API call again -> causing an infinite render loop that crashes the browser.
+   - Pure Component Architecture: React expects component render functions to be pure 
+     with no side effects. Placing side-effects inside `useEffect` with an empty 
+     dependency array `[]` ensures the API call runs strictly once when the component 
+     mounts, safely updating state without unhandled re-render cycles.
+
+
+================================================================================
+QUESTION 3 (S3) - React Advanced: Custom Hooks & State Isolation
+--------------------------------------------------------------------------------
+SCENARIO:
+You are working on a food delivery app where three separate components — the 
+restaurant listing page, the individual menu page, and the order history screen — 
+each fetch data from different API endpoints. All three use identical logic to 
+manage loading spinners and error messages.
+
+QUESTION:
+How would you extract this repeated fetch logic into a custom hook to eliminate 
+duplication? What naming convention must a custom hook follow, and what should it 
+return so that each of the three components can consume it independently without 
+sharing state?
+
+--------------------------------------------------------------------------------
+ANSWER:
+
+1. Extracting Repeated Fetch Logic into a Custom Hook:
+   - We create a reusable JavaScript function (e.g., `useFetchData(url)`) that 
+     encapsulates `useState` for data, loading, and error states, along with a 
+     `useEffect` block to execute `fetch(url)`.
+
+   Example Structure:
+   function useFetchData(url) {
+     const [data, setData] = useState(null);
+     const [loading, setLoading] = useState(true);
+     const [error, setError] = useState(null);
+
+     useEffect(() => {
+       setLoading(true);
+       fetch(url)
+         .then((res) => res.json())
+         .then((result) => { setData(result); setLoading(false); })
+         .catch((err) => { setError(err.message); setLoading(false); });
+     }, [url]);
+
+     return { data, loading, error };
+   }
+
+2. Naming Convention:
+   - Custom hooks MUST start with the prefix `use` (e.g., `useFetchData`, `useApi`). 
+     This convention is enforced by React rules (`eslint-plugin-react-hooks`) to enable 
+     React to automatically check for violation of hooks rules (such as calling hooks 
+     conditionally).
+
+3. Return Format & State Isolation Guarantee:
+   - Return Value: The hook should return an object containing state variables: `{ data, loading, error }`.
+   - Independent State Execution: Custom hooks isolate state completely per component instance. 
+     Calling a custom hook inside a component assigns a brand-new, independent set of `useState` 
+     and `useEffect` memory cells dedicated solely to that component.
+   - Therefore, Restaurant Listing (`useFetchData('/api/restaurants')`), Menu Page 
+     (`useFetchData('/api/menu')`), and Order History (`useFetchData('/api/orders')`) 
+     each receive their own isolated data, loading, and error states without sharing or 
+     polluting state between components.
+
+
+================================================================================
+QUESTION 4 (S4) - React Advanced: Context API vs Redux & Async Middleware
+--------------------------------------------------------------------------------
+SCENARIO:
+You are building the cart feature for a food delivery platform. The cart state — 
+holding item IDs, quantities, and the running total — must be readable and updatable 
+from the restaurant menu page, the persistent cart drawer in the navbar, and the 
+checkout page, all at the same time.
+
+QUESTION:
+Compare using React Context API versus Redux to manage this shared cart state. 
+Under what conditions would Redux be the more suitable choice for a production-scale 
+food delivery app, and what specific problem does Redux Thunk solve when the cart 
+feature needs to call a server API to apply a promo code?
+
+--------------------------------------------------------------------------------
+ANSWER:
+
+1. React Context API vs Redux Comparison:
+   - React Context API: Built into React, lightweight, easy to set up. Ideal for 
+     static or low-frequency global state (e.g., UI theme, current authenticated user). 
+     Limitation: Whenever any value inside a Context changes, ALL consuming components 
+     re-render regardless of whether they consume that specific piece of state.
+   - Redux: External state management library providing a centralized single store, 
+     strict unidirectional data flow, pure reducer functions, action dispatches, and 
+     selector-based subscriptions. High performance through selective re-rendering.
+
+2. Conditions Where Redux is More Suitable for Production-Scale App:
+   - Frequent & Complex State Updates: Cart actions involve frequent updates (add/remove 
+     items, quantity increment/decrement, tax/delivery math, promo discounts). Redux 
+     handles complex state transitions predictably using pure reducers.
+   - Performance Optimization: Redux selectors (`useSelector`) ensure that components 
+     only re-render when their specific slice of state changes (e.g., Navbar cart badge 
+     only re-renders on item count change, not checkout form text input).
+   - Enterprise Tooling: Production apps benefit from Redux DevTools (time-travel debugging, 
+     action logging) and middleware extensibility (persistence, analytics logging).
+
+3. Specific Problem Solved by Redux Thunk for Async Promo Code API:
+   - The Problem: Standard Redux action creators are synchronous and must return a 
+     plain JavaScript object `{ type, payload }`. Redux reducers are pure functions 
+     that cannot contain side-effects or async calls (like `fetch` or `axios`).
+   - The Solution: Redux Thunk is a middleware that allows action creators to return 
+     a **function** (a thunk) instead of a plain action object. This thunk function receives 
+     `dispatch` and `getState` as parameters, allowing it to perform asynchronous operations 
+     (e.g., calling `/api/validate-promo-code`). It dispatches a pending action first, waits 
+     for the server response, and then dispatches success or failure actions to safely update 
+     the Redux store.
+
+
+================================================================================
+QUESTION 5 (S5) - GraphQL & Next.js: GraphQL vs REST API & Over-Fetching
+--------------------------------------------------------------------------------
+SCENARIO:
+You are designing the data API for a food delivery platform. The customer-facing 
+mobile app only needs the restaurant name, average rating, and delivery fee per 
+restaurant. The admin dashboard, however, requires the full restaurant profile — 
+including owner contact details, total order count, active menu items, and city — 
+for each record.
+
+QUESTION:
+Explain how a GraphQL API satisfies both clients from a single endpoint differently 
+from a traditional REST API. Which GraphQL feature prevents the mobile app from 
+receiving data it does not need, and how does it benefit network performance on 
+a mobile connection?
+
+--------------------------------------------------------------------------------
+ANSWER:
+
+1. GraphQL vs REST API Architecture Difference:
+   - REST API Approach: REST relies on fixed endpoint URLs (e.g., `GET /api/restaurants`). 
+     The server defines the exact JSON response payload. To satisfy both mobile and 
+     admin clients, REST either over-fetches (returns full admin-level details to mobile apps) 
+     or requires creating multiple endpoint variants (e.g., `/api/mobile/restaurants` and 
+     `/api/admin/restaurants`), leading to endpoint sprawl and maintenance overhead.
+   - GraphQL Approach: GraphQL operates via a single endpoint (typically `/graphql`). 
+     The client, not the server, dictates the exact structure of the response through a 
+     GraphQL Query document.
+
+2. GraphQL Feature Preventing Unneeded Data Transfer:
+   - Declarative Data Fetching / Selective Field Selection: Clients send queries asking 
+     only for the fields they explicitly require.
+     
+     Mobile App Query:
+     query {
+       restaurants {
+         name
+         rating
+         deliveryFee
+       }
+     }
+
+     Admin Dashboard Query:
+     query {
+       restaurants {
+         name
+         rating
+         deliveryFee
+         ownerContact
+         totalOrderCount
+         activeMenuItems
+         city
+       }
+     }
+
+3. Network Performance Benefits on Mobile Connections:
+   - Eliminates Over-Fetching: The mobile app receives zero unrequested fields.
+   - Reduced Payload Size: Network payload bandwidth can be reduced by 70% to 90%.
+   - Faster Mobile Experience: Smaller JSON payloads result in faster transmission over 
+     cellular networks (3G/4G/5G), reduced CPU latency for JSON parsing on mobile devices, 
+     lower data battery consumption, and improved screen load times.
+
+
+================================================================================
+QUESTION 6 (S6) - GraphQL & Next.js: Next.js Rendering Strategies (SSG vs SSR)
+--------------------------------------------------------------------------------
+SCENARIO:
+You are optimising the homepage of a food delivery web platform built in Next.js. 
+The homepage displays a curated list of featured restaurants that the marketing 
+team updates once a day. Organic search traffic from Google is a primary acquisition 
+channel, so every millisecond of page load time and every crawlable HTML element matters.
+
+QUESTION:
+Would you use getStaticProps or getServerSideProps to fetch the featured restaurant 
+list, and why? Explain precisely how your choice affects Google's ability to index 
+the page content and how it differs in the load it places on your server per visitor request.
+
+--------------------------------------------------------------------------------
+ANSWER:
+
+1. Choice of Data Fetching Method:
+   - `getStaticProps` (Static Site Generation - SSG), optionally combined with 
+     Incremental Static Regeneration (ISR via `revalidate: 86400`).
+
+2. Why `getStaticProps` over `getServerSideProps`:
+   - Match Data Update Frequency: The featured restaurant list updates only ONCE a day. 
+     Using `getServerSideProps` (SSR) would re-fetch the API and render HTML from scratch 
+     on every single visitor request, which is unnecessary for data that changes once daily.
+   - Pre-Rendering at Build Time: `getStaticProps` pre-renders the page into static HTML 
+     and JSON files at build time (or in the background when revalidated).
+
+3. Effect on Google Crawling & SEO Indexing:
+   - Complete Crawlable HTML: Googlebot and search crawlers receive a fully populated 
+     HTML document instantly upon request, with zero client-side JavaScript execution delay.
+   - Faster Core Web Vitals: Pre-rendered HTML served via CDN edge servers dramatically 
+     improves Time To First Byte (TTFB), First Contentful Paint (FCP), and Largest Contentful 
+     Paint (LCP), which directly boosts Google search ranking algorithms.
+
+4. Server Load Comparison per Visitor Request:
+   - `getServerSideProps` (SSR): High Server Load. On EVERY HTTP request, the server 
+     must execute Node.js functions, query the database/API, and execute React server-side 
+     rendering before sending a response. Under heavy traffic spikes, this places extreme 
+     CPU and database stress on the application server.
+   - `getStaticProps` (SSG): Near-Zero Server Load. Pages are generated ONCE and cached globally 
+     on a Content Delivery Network (CDN). Subsequent visitor requests are served instantly 
+     as static assets directly from CDN edge nodes, resulting in zero backend API queries 
+     and zero Node.js server overhead per request.
+
+================================================================================
+                                END OF SECTION A
+================================================================================
