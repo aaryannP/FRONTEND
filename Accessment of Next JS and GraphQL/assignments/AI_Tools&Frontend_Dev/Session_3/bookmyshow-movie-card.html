@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookMyShow Style Movie Card - Pure HTML & CSS</title>
+  
+  <!-- ========================================================================================
+       TASK 4: BOOKMYSHOW MOVIE CARD (PURE HTML & CSS ONLY)
+       Constraint Enforced: ZERO JavaScript, ZERO external frameworks/libraries.
+       ======================================================================================== -->
+
+  <style>
+    :root {
+      --bms-pink: #f44336;
+      --bms-pink-hover: #d32f2f;
+      --bms-dark: #222539;
+      --bms-card-bg: #ffffff;
+      --text-main: #222222;
+      --text-muted: #666666;
+      --border-radius: 12px;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #0f121d;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    /* Container for Movie Card Gallery */
+    .card-container {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* BookMyShow Movie Card Element */
+    .bms-movie-card {
+      width: 240px;
+      background-color: var(--bms-card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .bms-movie-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 30px rgba(244, 67, 54, 0.25);
+    }
+
+    /* Poster Wrapper & Badge Overlays */
+    .poster-wrapper {
+      position: relative;
+      width: 100%;
+      height: 340px;
+      background-color: #1a1a1a;
+      overflow: hidden;
+    }
+
+    .poster-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .bms-movie-card:hover .poster-img {
+      transform: scale(1.05);
+    }
+
+    /* Rating Overlay Badge (BookMyShow Star Badge) */
+    .rating-badge {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 70%, transparent 100%);
+      color: #ffffff;
+      padding: 12px 10px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .star-icon {
+      color: #f44336;
+      font-size: 14px;
+    }
+
+    .rating-score {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .votes-count {
+      font-size: 11px;
+      color: #cccccc;
+      font-weight: 400;
+    }
+
+    /* Movie Details Section */
+    .movie-details {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+      color: var(--text-main);
+    }
+
+    .movie-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .movie-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .format-badge {
+      display: inline-block;
+      background-color: #f2f2f2;
+      color: #555555;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-right: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Book Now Call to Action Button */
+    .book-now-btn {
+      display: block;
+      width: 100%;
+      background-color: var(--bms-pink);
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .book-now-btn:hover {
+      background-color: var(--bms-pink-hover);
+    }
+
+    .book-now-btn:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">🎬 BookMyShow Movie Card Component (HTML & CSS Only)</h1>
+
+  <div class="card-container">
+
+    <!-- Movie Card 1: Kalki 2898 AD -->
+    <article class="bms-movie-card">
+      <div class="poster-wrapper">
+        <img 
+          src="https://via.placeholder.com/240x340/1a1a2e/ffffff?text=Kalki+2898+AD" 
+          alt="Kalki 2898 AD Poster" 
+          class="poster-img"
+        >
+        <div class="rating-badge">
+          <span class="star-icon">★</span>
+          <span class="rating-score">8.8/10</span>
+          <span class="votes-count">(420.5K Votes)</span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div>
+          <h2 class="movie-title">Kalki 2898 AD</h2>
+          <div class="movie-meta">
+            <span class="format-badge">2D, 3D, IMAX 3D</span>
+            <br>
+            <span>Action/Sci-Fi • Hindi, Telugu</span>
+          </div>
+        </div>
+
+        <a href="#" class="book-now-btn">Book Now</a>
+      </div>
+    </article>
+
+    <!-- Movie Card 2: Stree 2 -->
+    <article class="bms-movie-card">
+      <div class="poster-wrapper">
+        <img 
+          src="https://via.placeholder.com/240x340/3f0e40/ffffff?text=Stree+2" 
+          alt="Stree 2 Poster" 
+          class="poster-img"
+        >
+        <div class="rating-badge">
+          <span class="star-icon">★</span>
+          <span class="rating-score">9.1/10</span>
+          <span class="votes-count">(285K Votes)</span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div>
+          <h2 class="movie-title">Stree 2: Sarkate Ka Aatank</h2>
+          <div class="movie-meta">
+            <span class="format-badge">2D, 4DX</span>
+            <br>
+            <span>Comedy/Horror • Hindi</span>
+          </div>
+        </div>
+
+        <a href="#" class="book-now-btn">Book Now</a>
+      </div>
+    </article>
+
+    <!-- Movie Card 3: Deadpool & Wolverine -->
+    <article class="bms-movie-card">
+      <div class="poster-wrapper">
+        <img 
+          src="https://via.placeholder.com/240x340/800000/ffffff?text=Deadpool+%26+Wolverine" 
+          alt="Deadpool & Wolverine Poster" 
+          class="poster-img"
+        >
+        <div class="rating-badge">
+          <span class="star-icon">★</span>
+          <span class="rating-score">8.9/10</span>
+          <span class="votes-count">(310K Votes)</span>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div>
+          <h2 class="movie-title">Deadpool & Wolverine</h2>
+          <div class="movie-meta">
+            <span class="format-badge">3D, IMAX 3D</span>
+            <br>
+            <span>Action/Comedy • English, Hindi</span>
+          </div>
+        </div>
+
+        <a href="#" class="book-now-btn">Book Now</a>
+      </div>
+    </article>
+
+  </div>
+
+</body>
+</html>

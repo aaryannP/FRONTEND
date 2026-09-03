@@ -1,0 +1,21 @@
+================================================================================
+          TASK 3: CHATGPT GENERATED MUSIC FESTIVAL LANDING CONTENT
+================================================================================
+
+CHATGPT PROMPT USED:
+"Write a catchy headline and a short description (maximum 30 words) for a new 
+BookMyShow + IPL style nightlife music festival ticketing website named ELECTRA FEST."
+
+--------------------------------------------------------------------------------
+CATCHY HEADLINE:
+ELECTRA FEST 2026: Feel The Sonic Energy!
+
+SHORT DESCRIPTION (Max 30 Words Constraint):
+Experience India's biggest nightlife music festival featuring world-class DJs, 
+immersive laser lightshows, and non-stop beats. Book your early bird tickets now!
+
+--------------------------------------------------------------------------------
+WORD COUNT AUDIT:
+Headline Word Count: 7 Words
+Description Word Count: 22 Words (Strictly < 30 Words Constraint PASSED)
+================================================================================

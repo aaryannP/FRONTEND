@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myntra Style Responsive Navigation Bar</title>
+  
+  <!-- ========================================================================================
+       TASK 4: CHATGPT PROMPT GIVEN
+       ========================================================================================
+       PROMPT:
+       "Generate a fully responsive Myntra-style navigation bar using semantic HTML5, CSS3, 
+       and vanilla JavaScript. 
+       
+       CONSTRAINTS & REQUIREMENTS:
+       1. Links Required: Must include working navigation items for 'Home', 'Explore', 'Cart', and 'Profile'.
+       2. Desktop Layout (width > 768px): Sticky horizontal top bar featuring:
+          - Brand Logo on the far left.
+          - Navigation Links (Home, Explore, Categories, Offers).
+          - Centered search input box with a search icon.
+          - Right-side Action Items (Profile with hover dropdown, Wishlist, Cart with count badge).
+       3. Mobile Layout (width <= 768px):
+          - Top mobile header with brand logo, search icon, and hamburger menu toggle button.
+          - Slide-out Mobile Navigation Drawer overlay for expanded navigation options.
+          - Fixed Bottom Navigation Bar with touch-friendly quick action tabs for Home, Explore, Cart (with badge), and Profile.
+       4. Styling: Clean Myntra-inspired pink/magenta accent colors (#ff3f6c), sleek typography, 
+          smooth transition animations, and zero external framework dependencies."
+       ======================================================================================== -->
+
+  <style>
+    :root {
+      --myntra-pink: #ff3f6c;
+      --myntra-pink-hover: #e0355c;
+      --bg-white: #ffffff;
+      --bg-gray: #f5f5f6;
+      --text-main: #282c3f;
+      --text-muted: #696e79;
+      --border-color: #eaeaec;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Assistant', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f5;
+      color: var(--text-main);
+      padding-bottom: 70px; /* Space for mobile bottom navbar */
+    }
+
+    /* Top Sticky Header Container */
+    header.myntra-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      padding: 0 24px;
+    }
+
+    /* Logo Styling */
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--myntra-pink);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    /* Desktop Navigation Links */
+    .desktop-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      height: 100%;
+    }
+
+    .nav-item {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0 4px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-bottom: 4px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      border-bottom-color: var(--myntra-pink);
+      color: var(--myntra-pink);
+    }
+
+    /* Search Bar */
+    .search-box {
+      flex: 1;
+      max-width: 400px;
+      margin: 0 20px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background-color: var(--bg-gray);
+      border: 1px solid transparent;
+      padding: 10px 16px 10px 40px;
+      border-radius: 4px;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      background-color: var(--bg-white);
+      border-color: var(--border-color);
+      box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Action Icons (Desktop) */
+    .desktop-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .action-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 12px;
+      font-weight: 700;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .action-icon {
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      background-color: var(--myntra-pink);
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile Hamburger Menu Toggle Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    /* Mobile Navigation Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 280px;
+      height: 100%;
+      background-color: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      z-index: 2000;
+      transition: left 0.3s ease;
+      padding: 24px 20px;
+    }
+
+    .mobile-drawer.open {
+      left: 0;
+    }
+
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1999;
+      display: none;
+    }
+
+    .drawer-overlay.active {
+      display: block;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .close-drawer-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .drawer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .drawer-link {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    /* Mobile Bottom Navigation Bar */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: var(--bg-white);
+      border-top: 1px solid var(--border-color);
+      z-index: 1000;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .bottom-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .bottom-tab.active, .bottom-tab:hover {
+      color: var(--myntra-pink);
+    }
+
+    .bottom-tab .tab-icon {
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    /* Responsive Breakpoint Rules (< 768px) */
+    @media (max-width: 768px) {
+      .desktop-nav-links, .desktop-actions {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .mobile-bottom-nav {
+        display: flex;
+      }
+
+      .search-box {
+        margin: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="myntra-header">
+    <div class="nav-container">
+
+      <!-- Mobile Hamburger Menu Button -->
+      <button className="mobile-menu-btn" id="menuToggleBtn">☰</button>
+
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo">
+        <span>MYNTRA</span>
+      </a>
+
+      <!-- Desktop Navigation Links (Home, Explore, Cart, Profile) -->
+      <ul class="desktop-nav-links">
+        <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Explore</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Categories</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Offers</a></li>
+      </ul>
+
+      <!-- Search Box -->
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" placeholder="Search for products, brands and more">
+      </div>
+
+      <!-- Desktop Right Actions (Profile, Wishlist, Cart) -->
+      <div class="desktop-actions">
+        <a href="#" class="action-btn">
+          <span class="action-icon">👤</span>
+          <span>Profile</span>
+        </a>
+        <a href="#" class="action-btn">
+          <span class="action-icon">❤️</span>
+          <span>Wishlist</span>
+        </a>
+        <a href="#" class="action-btn">
+          <span class="action-icon">🛍️</span>
+          <span>Cart</span>
+          <span class="cart-badge">3</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="brand-logo">MYNTRA</div>
+      <button class="close-drawer-btn" id="closeDrawerBtn">✕</button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="#" class="drawer-link">Home</a></li>
+      <li><a href="#" class="drawer-link">Explore New Trends</a></li>
+      <li><a href="#" class="drawer-link">Categories</a></li>
+      <li><a href="#" class="drawer-link">Cart (3 items)</a></li>
+      <li><a href="#" class="drawer-link">My Profile</a></li>
+      <li><a href="#" class="drawer-link">Myntra Insider</a></li>
+    </ul>
+  </aside>
+
+  <!-- Mobile Bottom Navigation Bar (Touch Tabs: Home, Explore, Cart, Profile) -->
+  <nav class="mobile-bottom-nav">
+    <a href="#" class="bottom-tab active">
+      <span class="tab-icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="#" class="bottom-tab">
+      <span class="tab-icon">🔍</span>
+      <span>Explore</span>
+    </a>
+    <a href="#" class="bottom-tab">
+      <span class="tab-icon">🛍️</span>
+      <span>Cart</span>
+      <span class="cart-badge" style="top: 2px; right: 12px;">3</span>
+    </a>
+    <a href="#" class="bottom-tab">
+      <span class="tab-icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- Page Content Placeholder -->
+  <div style="max-width: 1200px; margin: 40px auto; padding: 20px; text-align: center;">
+    <h2>Myntra Responsive Navigation Bar Demo</h2>
+    <p style="color: #666; margin-top: 10px;">
+      Resize browser window to test Desktop top nav bar vs Mobile drawer and fixed Bottom Navigation bar.
+    </p>
+  </div>
+
+  <!-- JavaScript for Mobile Drawer Toggle -->
+  <script>
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+
+    function openDrawer() {
+      mobileDrawer.classList.add('open');
+      drawerOverlay.classList.add('active');
+    }
+
+    function closeDrawer() {
+      mobileDrawer.classList.remove('open');
+      drawerOverlay.classList.remove('active');
+    }
+
+    menuToggleBtn.addEventListener('click', openDrawer);
+    closeDrawerBtn.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+  </script>
+
+</body>
+</html>

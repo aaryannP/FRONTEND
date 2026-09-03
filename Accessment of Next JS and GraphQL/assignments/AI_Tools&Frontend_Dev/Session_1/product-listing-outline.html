@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flipkart Style Product Listing Page Outline</title>
+  <style>
+    :root {
+      --flipkart-blue: #2874f0;
+      --flipkart-yellow: #ffe500;
+      --bg-gray: #f1f3f6;
+      --text-dark: #212121;
+      --text-muted: #878787;
+      --border-color: #e0e0e0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-gray);
+      color: var(--text-dark);
+    }
+
+    /* Header & Navigation Bar */
+    header {
+      background-color: var(--flipkart-blue);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      gap: 20px;
+    }
+
+    .brand-logo {
+      font-size: 20px;
+      font-weight: bold;
+      font-style: italic;
+      text-decoration: none;
+      color: white;
+    }
+
+    .brand-logo span {
+      color: var(--flipkart-yellow);
+    }
+
+    .search-container {
+      flex: 1;
+      max-width: 600px;
+      display: flex;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 9px 16px;
+      border: none;
+      border-radius: 2px 0 0 2px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .search-button {
+      background-color: white;
+      border: none;
+      padding: 9px 16px;
+      cursor: pointer;
+      color: var(--flipkart-blue);
+      font-weight: bold;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .login-btn {
+      background-color: white;
+      color: var(--flipkart-blue);
+      padding: 6px 32px;
+      font-weight: 600;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Page Main Container Layout */
+    .main-container {
+      max-width: 1240px;
+      margin: 12px auto;
+      display: flex;
+      gap: 12px;
+      padding: 0 8px;
+    }
+
+    /* Sidebar Filters Section */
+    aside.sidebar-filters {
+      width: 280px;
+      background: white;
+      padding: 16px;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      align-self: flex-start;
+    }
+
+    .filter-header {
+      font-size: 18px;
+      font-weight: 600;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 16px;
+    }
+
+    .filter-group {
+      margin-bottom: 20px;
+    }
+
+    .filter-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    /* Main Content Area */
+    main.product-listing-content {
+      flex: 1;
+      background: white;
+      padding: 16px;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .sort-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .sort-label {
+      font-weight: 600;
+    }
+
+    .sort-option {
+      color: var(--text-muted);
+      cursor: pointer;
+      padding-bottom: 4px;
+    }
+
+    .sort-option.active {
+      color: var(--flipkart-blue);
+      font-weight: 600;
+      border-bottom: 2px solid var(--flipkart-blue);
+    }
+
+    /* Product Cards Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 12px;
+      text-align: center;
+      transition: box-shadow 0.2s ease;
+      background: white;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 12px;
+      background-color: #fafafa;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .product-rating {
+      display: inline-block;
+      background-color: #388e3c;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+
+    .price-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .current-price {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .original-price {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .discount-tag {
+      font-size: 13px;
+      color: #388e3c;
+      font-weight: 600;
+    }
+
+    /* Footer Section */
+    footer {
+      background-color: #172337;
+      color: white;
+      margin-top: 40px;
+      padding: 40px 16px 20px;
+      font-size: 12px;
+    }
+
+    .footer-columns {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #454d5e;
+    }
+
+    .footer-col h4 {
+      color: #878787;
+      font-size: 12px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 6px;
+    }
+
+    .footer-col ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      max-width: 1240px;
+      margin: 20px auto 0;
+      text-align: center;
+      color: #878787;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="navbar">
+      <!-- Logo -->
+      <a href="#" class="brand-logo">Flipkart <span>Plus</span></a>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search for products, brands and more">
+        <button class="search-button">🔍 Search</button>
+      </div>
+
+      <!-- Navigation Action Links -->
+      <div class="nav-actions">
+        <button class="login-btn">Login</button>
+        <a href="#" class="nav-link">Become a Seller</a>
+        <a href="#" class="nav-link">More</a>
+        <a href="#" class="nav-link">🛒 Cart</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Product Listing Content Area -->
+  <div class="main-container">
+
+    <!-- Sidebar Filters -->
+    <aside class="sidebar-filters">
+      <div class="filter-header">Filters</div>
+
+      <div class="filter-group">
+        <div class="filter-title">Categories</div>
+        <div class="filter-option"><input type="checkbox" checked> Electronics & Mobiles</div>
+        <div class="filter-option"><input type="checkbox"> Fashion & Apparel</div>
+        <div class="filter-option"><input type="checkbox"> Home & Kitchen</div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-title">Price Range</div>
+        <input type="range" min="500" max="50000" style="width: 100%;">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+          <span>₹500</span>
+          <span>₹50,000+</span>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-title">Customer Ratings</div>
+        <div class="filter-option"><input type="checkbox"> 4★ & above</div>
+        <div class="filter-option"><input type="checkbox"> 3★ & above</div>
+      </div>
+    </aside>
+
+    <!-- Main Product Grid View -->
+    <main class="product-listing-content">
+      
+      <!-- Sorting Bar -->
+      <div class="sort-bar">
+        <span class="sort-label">Sort By</span>
+        <span class="sort-option active">Relevance</span>
+        <span class="sort-option">Popularity</span>
+        <span class="sort-option">Price -- Low to High</span>
+        <span class="sort-option">Price -- High to Low</span>
+        <span class="sort-option">Newest First</span>
+      </div>
+
+      <!-- Product Cards Grid -->
+      <div class="product-grid">
+        
+        <!-- Product 1 -->
+        <article class="product-card">
+          <img src="https://via.placeholder.com/200x180?text=Smartphone+5G" alt="5G Smartphone" class="product-img">
+          <h3 class="product-title">Realme 12 Pro 5G (Submarine Blue, 256 GB)</h3>
+          <div class="product-rating">4.4 ★</div>
+          <div class="price-container">
+            <span class="current-price">₹23,999</span>
+            <span class="original-price">₹29,999</span>
+            <span class="discount-tag">20% off</span>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card">
+          <img src="https://via.placeholder.com/200x180?text=Wireless+Headphones" alt="Headphones" class="product-img">
+          <h3 class="product-title">Sony WH-1000XM5 Noise Cancelling Headphones</h3>
+          <div class="product-rating">4.7 ★</div>
+          <div class="price-container">
+            <span class="current-price">₹26,990</span>
+            <span class="original-price">₹34,990</span>
+            <span class="discount-tag">22% off</span>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card">
+          <img src="https://via.placeholder.com/200x180?text=Smartwatch" alt="Smartwatch" class="product-img">
+          <h3 class="product-title">Noise ColorFit Pro 5 Smartwatch</h3>
+          <div class="product-rating">4.2 ★</div>
+          <div class="price-container">
+            <span class="current-price">₹3,499</span>
+            <span class="original-price">₹7,999</span>
+            <span class="discount-tag">56% off</span>
+          </div>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="product-card">
+          <img src="https://via.placeholder.com/200x180?text=Gaming+Laptop" alt="Laptop" class="product-img">
+          <h3 class="product-title">ASUS TUF Gaming F15 Intel Core i5 11th Gen</h3>
+          <div class="product-rating">4.5 ★</div>
+          <div class="price-container">
+            <span class="current-price">₹52,990</span>
+            <span class="original-price">₹74,990</span>
+            <span class="discount-tag">29% off</span>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-columns">
+      <div class="footer-col">
+        <h4>ABOUT</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Flipkart Stories</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>HELP</h4>
+        <ul>
+          <li><a href="#">Payments</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Cancellation & Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>POLICY</h4>
+        <ul>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Terms Of Use</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>SOCIAL</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Flipkart Clone Demo. All Rights Reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

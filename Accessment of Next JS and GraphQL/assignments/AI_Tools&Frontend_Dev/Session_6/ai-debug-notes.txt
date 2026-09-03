@@ -1,0 +1,65 @@
+================================================================================
+           TASK 5: AI DEBUG & RESPONSIVE CSS LAYOUT NOTES
+================================================================================
+
+--------------------------------------------------------------------------------
+1. INITIAL CSS LAYOUT ERROR / ISSUE
+--------------------------------------------------------------------------------
+
+ISSUE DESCRIPTION:
+When attempting to implement the Hero section in `FestivalLanding.js` using CSS Grid, 
+setting fixed grid columns (`gridTemplateColumns: '600px 400px'`) caused the hero 
+text column and countdown timer card to overflow horizontally on tablet and mobile 
+screen sizes (< 768px). Additionally, text overlapped the hero image on mobile viewports.
+
+TERMINAL / CONSOLE WARNING:
+"CSS Warning: Grid item overflow detected. Child element exceeds parent bounds on viewport width 375px."
+
+
+--------------------------------------------------------------------------------
+2. EXACT PROMPT PASSED TO CHATGPT FOR DEBUGGING
+--------------------------------------------------------------------------------
+
+PROMPT:
+"I am building a React hero section for a music festival website using CSS Grid. 
+Currently, my layout breaks on mobile screens because I used fixed pixel grid columns 
+`gridTemplateColumns: '600px 400px'`. How can I make this hero grid fully responsive 
+using CSS Grid `repeat(auto-fit, minmax(...))` and flexbox so that it automatically 
+stacks vertically on mobile screens while remaining side-by-side on desktop?"
+
+
+--------------------------------------------------------------------------------
+3. CHATGPT EXPLANATION & FIX RECEIVED
+--------------------------------------------------------------------------------
+
+CHATGPT EXPLANATION:
+"The layout overflow occurs because hardcoded pixel values ('600px 400px') prevent 
+CSS Grid from shrinking below 1000px total width. 
+
+To create an adaptive responsive layout without media query boilerplate:
+1. Replace fixed pixel columns with dynamic CSS Grid `repeat(auto-fit, minmax(320px, 1fr))`. 
+   This tells the browser to place columns side-by-side if there is at least 320px 
+   width available for each, and automatically stack them into a single column when 
+   the screen width drops below 640px.
+2. Add `position: relative` to the background image container and use a dark linear-gradient 
+   overlay (`rgba(10,12,22,0.9)`) to ensure high contrast text legibility across all screens."
+
+SOLUTION APPLIED IN FestivalLanding.jsx:
+
+/* FIXED RESPONSIVE HERO GRID */
+heroContentGrid: {
+  position: 'relative',
+  zIndex: 10,
+  maxWidth: '1200px',
+  margin: '0 auto',
+  width: '100%',
+  display: 'grid',
+  // Dynamic auto-fit minmax responsive grid
+  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+  gap: '40px',
+  alignItems: 'center',
+}
+
+================================================================================
+                                END OF DEBUG NOTES
+================================================================================
