@@ -1,0 +1,10 @@
+# TASK 1: Netlify Build Configuration File
+[build]
+  command = "npm run build"
+  publish = "build"
+
+# SPA Redirect rule preventing 404 on page refreshes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
