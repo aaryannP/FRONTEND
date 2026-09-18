@@ -1,0 +1,7 @@
+Custom hooks abstract away state logic, acting like reusable functions. Instead of rewriting useState and useEffect every time we need data, we abstract the core fetching logic into useFetchData.
+
+In a Flipkart-style app, this hook could be reused in multiple places.
+For example:
+1. Fetching the main list of products on the homepage.
+2. Fetching the user's order history on their profile page.
+We can use the exact same hook for both, just by passing a different URL.
